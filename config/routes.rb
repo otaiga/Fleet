@@ -6,8 +6,8 @@ Fleet::Application.routes.draw do
   get "page/terms"
 
   get "main/Index"
-
-
+  get "main/new_device_create"
+  match "main/create" => "main#create"
   devise_for :accounts
 
   # The priority is based upon order of creation:
