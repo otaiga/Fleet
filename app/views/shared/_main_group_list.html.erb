@@ -1,0 +1,9 @@
+ <%@user.groups.all.each do|group| %>
+ <li class="span2">
+          <p><%=group.name%></p>
+        </a>
+        <span class="label">Selected Profile</span>
+        <br>
+        <%=render "shared/profile_list" %>
+      </li>
+    <%end%>

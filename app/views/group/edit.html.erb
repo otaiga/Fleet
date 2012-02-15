@@ -1,0 +1,17 @@
+<h2>Edit Group</h2>
+<div class="row">
+<div class="span4">
+<div class="well">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%=@group.name%>'s Devices</li>
+    <%=render "shared/device_list" %>
+  </ul>
+  </div>
+  </div>
+<div class="span2.5">
+ <div class="well">
+ <a><%= link_to 'Back', root_path,:class=>"btn" %></a>
+ <a><%= link_to 'Delete Group', group_destroy_path(@group.id),:class=>"btn" %></a>
+</div>
+</div>
+</div>
