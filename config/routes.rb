@@ -1,8 +1,12 @@
 Fleet::Application.routes.draw do
+  get "page/about"
+
+  get "page/support"
+
+  get "page/terms"
+
   get "main/Index"
-  get "main/about"
-  get "main/support"
-  get "main/terms"
+
 
   devise_for :accounts
 

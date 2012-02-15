@@ -37,9 +37,9 @@
           <a class="brand"<%=link_to "FleetDevice", root_path%>></a>
           <div class="container nav-collapse">
             <ul class="nav">
-                <li><%= link_to "about", main_about_path %></li>
-                <li><%= link_to "our terms", main_terms_path  %></li>
-                <li><%= link_to "support", main_support_path  %></li>
+                <li><%= link_to "about", page_about_path %></li>
+                <li><%= link_to "our terms", page_terms_path  %></li>
+                <li><%= link_to "support", page_support_path  %></li>
                  <% if account_signed_in? %>
                   <li><%= link_to('Logout', destroy_account_session_path, :method =>:delete) %></li>
                   <% end %>         
