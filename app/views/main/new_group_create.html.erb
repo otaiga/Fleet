@@ -1,0 +1,20 @@
+<br>
+
+<div class="row">
+<div class="span4 offset4">
+<div class="well">
+
+<%=render "shared/flash_notice"%>
+<h3>New Group</h3>
+<br>
+<%= form_for @group, :url => main_create_group_path do |f| %>
+
+  <%= f.label "Group Name" %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+
+<br>
+  <%= f.submit "create" %>
+<% end %>
+</div>
+</div>

@@ -6,4 +6,10 @@ module MainHelper
       when :alert then "warning"
     end
   end
+
+  def device_form
+    @user = Account.find(current_account.id)
+    @groups = @user.groups.all
+    @groups.map { |group| [group.name, group.id] }
+  end
 end

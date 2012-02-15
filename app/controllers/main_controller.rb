@@ -11,7 +11,7 @@ before_filter :authenticate_account!
     if @device.valid?
 
     Device.create(params[:device])
-    redirect_to(root_path, :notice => "Message was successfully sent.")
+    redirect_to(root_path, :notice => "Device was successfully created.")
 
     else
       flash.alert = "Please fill in all fields."
@@ -21,6 +21,24 @@ before_filter :authenticate_account!
   
   def new_device_create
    @device = Device.new
+  end
+
+  def new_group_create
+    @group = Group.new
+  end
+
+  def create_group
+    @group = Group.new(params[:group])
+   
+    if @group.valid?
+
+    Group.create(params[:group])
+    redirect_to(root_path, :notice => "Group was successfully created.")
+
+    else
+      flash.alert = "Please fill in all fields."
+      render :new_group_create
+    end
   end
 
 end

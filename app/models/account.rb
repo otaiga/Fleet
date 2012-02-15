@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :devices
+  has_many :groups
 
 
 end
