@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
+gem 'capistrano'
 
 gem 'json'
 
