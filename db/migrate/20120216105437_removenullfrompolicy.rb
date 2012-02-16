@@ -1,9 +1,9 @@
 class Removenullfrompolicy < ActiveRecord::Migration
   def up
-  	change_column :policies, :group_id, :integer
+  	remove_column :policies, :group_id, :integer, :null => false
   end
 
   def down
-  	change_column :policies, :group_id, :integer, :null => false
+  	add_column :policies, :group_id, :integer, :null => false
   end
 end
