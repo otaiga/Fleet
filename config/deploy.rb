@@ -12,7 +12,7 @@ role :app, "www.karlturner.co.uk"                          # This may be the sam
 role :db,  "www.karlturner.co.uk", :primary => true # This is where Rails migrations will run
 
 set :deploy_to, "/home/Kturner2/ruby/rails/fleet"
-set :shared_path, "/home/Kturner2/ruby/rails/fleet"
+set :shared_path, "/home/Kturner2/ruby/rails/Fleet"
 default_run_options[:pty] = true 
 
 set :default_environment, {
