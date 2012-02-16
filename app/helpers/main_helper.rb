@@ -12,4 +12,15 @@ module MainHelper
     @groups = @user.groups.all
     @groups.map { |group| [group.name, group.id] }
   end
+
+  def policy(group)
+     @policy = Group.find(group).policy_id
+     unless @policy != nil
+      "No Policy Selected"
+    else
+      @policy_name = Policy.find(@policy)
+      "#{@policy_name.name}"
+    end
+
+  end
 end

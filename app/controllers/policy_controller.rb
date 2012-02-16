@@ -16,7 +16,7 @@ before_filter :authenticate_account!
 
     else
       flash.alert = "Please fill in all fields."
-      render :policy_index
+      render :index
     end
   end
 
@@ -29,6 +29,14 @@ before_filter :authenticate_account!
 
   def destroy
   	 @profile = Policy.destroy(params[:format])
+    redirect_to root_path
+  end
+
+  def append_to_group
+    @policy = params[:format][0]
+    @user = Account.find(current_account.id)
+    @group = @user.groups.find(params[:format][1])
+    @group.update_attributes(:policy_id => @policy)
     redirect_to root_path
   end
 

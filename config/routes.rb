@@ -18,6 +18,7 @@ Fleet::Application.routes.draw do
   get "policy/edit"
   match "policy/create" => "policy#create"
   match "policy/destroy" => "policy#destroy"
+  match "policy/append_to_group" => "policy#append_to_group"
 
   devise_for :accounts
 

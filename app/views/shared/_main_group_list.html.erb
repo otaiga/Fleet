@@ -1,9 +1,20 @@
  <%@user.groups.all.each do|group| %>
  <li class="span2">
-          <p><%=group.name%></p>
+        <p><%=group.name%></p>
         </a>
-        <span class="label">Current Policy: </span>
+        <p>Current Policy:<br>
+        <span class="label"><%=policy(group.id)%></span></p>
         <br>
-        <%=render "shared/profile_list" %>
-      </li>
-    <%end%>
+        <div class="btn-group">
+        <a class="btn">Change Policy</a>
+        <a class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <%@user.policies.each do |policy| %>
+          <li><a><%=link_to policy.name, policy_append_to_group_path([policy.id, group.id])%></a></li>
+        <%end%>
+        </ul>
+     </div>
+   </li>
+ <%end%>
