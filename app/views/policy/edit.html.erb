@@ -1,0 +1,18 @@
+<h2>Edit Policy</h2>
+<div class="row">
+<div class="span4">
+<div class="well">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%=@policy.name%> Settings</li>
+
+  </ul>
+  </div>
+  </div>
+<div class="span2.5">
+ <div class="well">
+ <a><%= link_to "Add Settings", main_new_device_create_path, :class=>"btn" %></a>
+ <a><%= link_to 'Delete Policy', policy_destroy_path(@policy.id),:class=>"btn" %></a>
+ <a><%= link_to 'Back', root_path,:class=>"btn" %></a>
+</div>
+</div>
+</div>

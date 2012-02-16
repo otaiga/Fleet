@@ -12,7 +12,12 @@ Fleet::Application.routes.draw do
   match "main/create_group" => "main#create_group"
 
   get "group/edit"
-   match "group/destroy" => "group#destroy"
+  match "group/destroy" => "group#destroy"
+
+  get "policy/index"
+  get "policy/edit"
+  match "policy/create" => "policy#create"
+  match "policy/destroy" => "policy#destroy"
 
   devise_for :accounts
 

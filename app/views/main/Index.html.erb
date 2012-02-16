@@ -17,15 +17,12 @@
       <div class="well sidebar-nav">
          <h3>Edit Policy</h3>
          <ul class="nav nav-list">
-           <li class="nav-header">Available Profiles</li>
-           <li><a>Policy 1</a></li>
-           <li><a>Policy 2</a></li>
-           <li><a>Policy 3</a></li>
-           <li><a>Policy 4</a></li>
+           <li class="nav-header">Available Policies</li>
+           <%=render "shared/policy_list"%>
           </ul>
-          <a class="btn">Create a Profile</a>
+          <a><%= link_to "Create a Policy", policy_index_path, :class=>"btn" %></a>
         </div> 
-        
+
       <div class="well sidebar-nav">
          <h3>Edit Device Groups</h3>
          <ul class="nav nav-list">

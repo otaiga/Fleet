@@ -1,0 +1,19 @@
+<br>
+
+<div class="row">
+<div class="span4 offset4">
+<div class="well">
+
+<%=render "shared/flash_notice"%>
+<h3>New Policy</h3>
+<br>
+<%= form_for @policy, :url => policy_create_path do |f| %>
+  <%= f.label "Policy Name" %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+
+<br>
+  <%= f.submit "create" %>
+<% end %>
+</div>
+</div>
