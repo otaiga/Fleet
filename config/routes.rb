@@ -1,4 +1,7 @@
 Fleet::Application.routes.draw do
+
+  get "api/index"
+
   get "page/about"
 
   get "page/support"
@@ -22,6 +25,7 @@ Fleet::Application.routes.draw do
 
   match "main/device_destroy" => "main#device_destroy"
 
+ resources :api
   devise_for :accounts
 
   # The priority is based upon order of creation:
