@@ -11,6 +11,7 @@
         <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
+          <li><a><%=link_to "No Policy", policy_append_to_group_path([nil, group.id])%></a></li>
           <%@user.policies.each do |policy| %>
           <li><a><%=link_to policy.name, policy_append_to_group_path([policy.id, group.id])%></a></li>
         <%end%>

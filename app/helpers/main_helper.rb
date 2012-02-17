@@ -21,6 +21,14 @@ module MainHelper
       @policy_name = Policy.find(@policy)
       "#{@policy_name.name}"
     end
+  end
 
+  def device_name(device)
+    @name = device.name
+    if @name == "" || nil
+      ""
+    else
+      "#{device.name} : "
+    end
   end
 end
