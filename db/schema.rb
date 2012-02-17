@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120217084840) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "account_id", :null => false
+    t.integer  "policy_id"
   end
 
   create_table "policies", :force => true do |t|

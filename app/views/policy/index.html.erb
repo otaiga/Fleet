@@ -1,7 +1,7 @@
 <br>
 
 <div class="row">
-<div class="span4 offset4">
+<div class="span6 offset3">
 <div class="well">
 
 <%=render "shared/flash_notice"%>
@@ -10,10 +10,49 @@
 <%= form_for @policy, :url => policy_create_path do |f| %>
   <%= f.label "Policy Name" %>
   <%= f.text_field :name %>
-  <%= f.hidden_field :account_id, :value => current_account.id %>
+  <br>
+ <div class="well">
+ <h4>Device Lock Settings</h4>
+ <br>
+ <label class="radio inline"> <%= f.radio_button :name, true, :id=>"optionsRadios1" %> On </label>
+ <label class="radio inline"> <%= f.radio_button :name, false, :id=>"optionsRadios2"  %> Off </label>
+ <br>
+ <br>
+  <%= f.label "Pin Number" %>
+  <%= f.text_field :name, :class => "input-mini"%>
+ </div>
 
+ <div class="well">
+ <h4>Call Settings</h4>
+ <div class="well">
+  <%= f.label "Authorised Numbers Inbound" %>
+  <%= f.text_field :name %>
+  </div>
+
+  <div class="well">
+  <%= f.label "Authorised Numbers Outbound" %>
+  <%= f.text_field :name %>
+   </div>
+  <%= f.label "Call Time Window" %>
+  <%= f.text_field :name %>
+</div>
+
+ <div class="well">
+ <h4>Messaging Settings</h4>
+  <div class="well">
+  <%= f.label "Authorised Numbers Inbound" %>
+  <%= f.text_field :name %>
+  </div>
+  <div class="well">
+  <%= f.label "Authorised Numbers Outbound" %>
+  <%= f.text_field :name %>
+  </div>
+  <%= f.label "Call Time Window" %>
+  <%= f.text_field :name %>
+</div>
 <br>
-  <%= f.submit "create" %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+  <%= f.submit "create", :class => "btn"%>
 <% end %>
 </div>
 </div>

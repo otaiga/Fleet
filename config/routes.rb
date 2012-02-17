@@ -25,6 +25,7 @@ Fleet::Application.routes.draw do
 
   match "main/device_destroy" => "main#device_destroy"
 
+
  resources :api
   devise_for :accounts
 

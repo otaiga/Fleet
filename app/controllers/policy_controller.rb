@@ -24,7 +24,6 @@ before_filter :authenticate_account!
   def edit
   	 @user = Account.find(current_account.id)
   	 @policy = @user.policies.find(params[:format])
-  	 @settings = @policies.settings.all
   end
 
   def destroy
