@@ -7,9 +7,9 @@ class AddcolumstoDevice < ActiveRecord::Migration
   end
 
   def down
-  	remove_column :devices, :name, :string
-  	remove_column :devices, :make, :string
-  	remove_column :devices, :model, :string
-	  remove_column :devices, :account_id, :integer, :null => false
+  	remove_column :devices, :name
+  	remove_column :devices, :make
+  	remove_column :devices, :model
+	  remove_column :devices, :account_id
   end
 end

@@ -5,7 +5,7 @@ class Addfieldstogroup < ActiveRecord::Migration
   end
 
   def down
-  	remove_column :groups, :name, :string
-	remove_column :groups, :account_id, :integer, :null => false
+  	remove_column :groups, :name
+	remove_column :groups, :account_id
   end
 end

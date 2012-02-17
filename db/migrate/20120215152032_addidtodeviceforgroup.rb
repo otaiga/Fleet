@@ -4,6 +4,6 @@ class Addidtodeviceforgroup < ActiveRecord::Migration
   end
 
   def down
-  	remove_column :devices, :group_id, :integer, :null => false
+  	remove_column :devices, :group_id
   end
 end

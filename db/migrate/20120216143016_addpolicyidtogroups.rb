@@ -4,6 +4,6 @@ class Addpolicyidtogroups < ActiveRecord::Migration
   end
 
   def down
-	remove_column :groups, :policy_id, :integer
+	remove_column :groups, :policy_id
   end
 end

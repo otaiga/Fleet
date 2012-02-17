@@ -8,12 +8,10 @@
 <h3>New Device</h3>
 <br>
 <%= form_for @device, :url => main_create_path do |f| %>
-  <%= f.label "Device Name" %>
+  <%= f.label "Device MSISDN (e.g. 44777123456)" %>
+  <%= f.text_field :msisdn %>
+  <%= f.label "Device Name (Optional)" %>
   <%= f.text_field :name %>
-  <%= f.label "Device Make" %>
-  <%= f.text_field :make %>
-  <%= f.label "Device Model" %>
-  <%= f.text_field :model %>
   <%= f.label "Group Assignment" %>
   <%= f.select :group_id, options_for_select(device_form)%>
   <%= f.hidden_field :account_id, :value => current_account.id %>
