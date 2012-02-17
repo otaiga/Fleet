@@ -2,7 +2,7 @@ class ApiController < ApplicationController
 # before_filter :http_basic_authentication
 
   def index
-    @policy = Policy.all
+    @policy = Account.find(1).policies
     respond_to do |format|
       format.xml { render :xml => @policy.to_xml }
       format.html { redirect_to root_path }
