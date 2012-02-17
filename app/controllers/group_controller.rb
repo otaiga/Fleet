@@ -6,6 +6,7 @@ before_filter :authenticate_account!
   	 @user = Account.find(current_account.id)
   	 @group = @user.groups.find(params[:format])
   	 @devices = @group.devices.all
+  	 @device = Device.new
   end
 
   def destroy

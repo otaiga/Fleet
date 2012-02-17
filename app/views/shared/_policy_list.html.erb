@@ -1,3 +1,9 @@
- <%@user.policies.all.each do|policy| %>
-<li><p><a><%=link_to policy.name, policy_edit_path(policy.id)%> <%= link_to 'Delete', policy_destroy_path(policy.id),:class=>"btn btn-small" %></a></p></li>
+ <table class="table table-bordered table-striped">
+ <tbody>
+    <%@user.policies.all.each do|policy| %>
+    <tr>
+     <td><%=link_to policy.name, policy_edit_path(policy.id)%></td><td><%= link_to 'Delete', policy_destroy_path(policy.id),:class=>"btn btn-small" %></td>
+    </tr>
     <%end%>
+    </tbody>
+</table>

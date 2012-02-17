@@ -1,3 +1,14 @@
-<%@devices.each do|device| %>
-    <li><a><%=device_name(device)%><%=device.msisdn%></a></li>
-<%end%>
+ <table class="table table-bordered table-striped">
+ <thread>
+ <tr>
+ <th>Name</th>
+ <th>MSISDN</th>
+ </thread>
+ <tbody>
+    <%@devices.each do|device| %>
+    <tr>
+     <td><%=device_name(device)%></td><td><%=device.msisdn%></td><td><%= link_to 'Delete', main_device_destroy_path([device.id, @group.id]),:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>

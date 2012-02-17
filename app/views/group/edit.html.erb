@@ -8,11 +8,28 @@
   </ul>
   </div>
   </div>
+
 <div class="span2.5">
  <div class="well">
- <a><%= link_to "Create a Device", main_new_device_create_path, :class=>"btn" %></a>
+<%= form_for @device, :url => main_create_path do |f| %>
+  <%= f.label "Device MSISDN (e.g. 44777123456)" %>
+  <%= f.text_field :msisdn %>
+  <%= f.label "Device Name (Optional)" %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :group_id, :value => @group.id %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+  <br>
+  <%= f.submit "Add Device to Group", :class=>"btn" %>
+  <%end%>
+
+</div>
+
+<div class="span2.5">
+ <div class="well">
  <a><%= link_to 'Delete Group', group_destroy_path(@group.id),:class=>"btn" %></a>
  <a><%= link_to 'Back', root_path,:class=>"btn" %></a>
 </div>
 </div>
+</div>
+
 </div>

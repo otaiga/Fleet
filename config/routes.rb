@@ -20,6 +20,8 @@ Fleet::Application.routes.draw do
   match "policy/destroy" => "policy#destroy"
   match "policy/append_to_group" => "policy#append_to_group"
 
+  match "main/device_destroy" => "main#device_destroy"
+
   devise_for :accounts
 
   # The priority is based upon order of creation:

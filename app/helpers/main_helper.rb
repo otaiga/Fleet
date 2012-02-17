@@ -26,9 +26,9 @@ module MainHelper
   def device_name(device)
     @name = device.name
     if @name == "" || nil
-      ""
+      "-"
     else
-      "#{device.name} : "
+      "#{device.name}"
     end
   end
 end

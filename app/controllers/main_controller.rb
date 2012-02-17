@@ -11,7 +11,7 @@ before_filter :authenticate_account!
     if @device.valid?
 
     Device.create(params[:device])
-    redirect_to(root_path, :notice => "Device was successfully created.")
+    redirect_to(group_edit_path(params[:device][:group_id]), :notice => "Device was successfully created.")
 
     else
       flash.alert = 'Please fill in "Device msisdn" field.'
@@ -26,6 +26,12 @@ before_filter :authenticate_account!
     if @groups.count == 0
       redirect_to(root_path, :notice => "Please Create a Group first.")
     end
+  end
+
+
+  def device_destroy
+   @device = Device.destroy((params[:format][0]))
+   redirect_to group_edit_path(params[:format][1])
   end
 
   def new_group_create

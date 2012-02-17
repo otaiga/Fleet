@@ -1,3 +1,10 @@
-<%@user.groups.all.each do|group| %>
-<li><p><a><%=link_to group.name, group_edit_path(group.id)%> <%= link_to 'Delete', group_destroy_path(group.id),:class=>"btn btn-small" %></a></p></li>
-<%end%>
+<table class="table table-bordered table-striped">
+ <tbody>
+    <%@user.groups.all.each do|group| %>
+    <tr>
+     <td><%=link_to group.name, group_edit_path(group.id)%></td><td><%= link_to 'Delete', group_destroy_path(group.id),:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+
