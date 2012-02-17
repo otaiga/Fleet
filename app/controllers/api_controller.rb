@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-before_filter :http_basic_authentication
+# before_filter :http_basic_authentication
 
   def index
     @policy = Policy.all
