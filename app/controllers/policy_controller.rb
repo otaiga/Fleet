@@ -12,7 +12,7 @@ before_filter :authenticate_account!
     if @policy.valid?
 
     Policy.create(params[:policy])
-    redirect_to(root_path, :notice => "Policy was successfully created.")
+    redirect_to root_path
 
     else
       flash.alert = "Please fill in all fields."
@@ -28,7 +28,9 @@ before_filter :authenticate_account!
   end
 
   def destroy
-  	 @profile = Policy.destroy(params[:format])
+  	@profile = Policy.destroy(params[:format])
+    @groups = Account.find(current_account.id).groups.where(:policy_id => (params[:format]))
+    @groups.each {|group| Group.find(group.id).update_attributes(:policy_id => nil) }
     redirect_to root_path
   end
 
