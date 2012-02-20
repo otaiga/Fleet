@@ -4,6 +4,8 @@ before_filter :authenticate_account!
 
   def index
     @policy = Policy.new
+    @policy.calls_inbound_msisdns.build
+
   end
 
   def create
