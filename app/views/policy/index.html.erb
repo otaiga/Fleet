@@ -33,6 +33,7 @@
        <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
      <% end %>
     <p><%= f.link_to_add "Add a Phone Number", :calls_inbound_msisdns, :class => "btn" %> <%= link_to "Add a Number List", "#", :class => "btn" %></p>
+      <%= f.select :phonelist_id, options_for_select(phonelist_form)%>
    </div>
 
   <div class="well">

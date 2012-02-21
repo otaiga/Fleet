@@ -1,0 +1,29 @@
+<br>
+
+<div class="row">
+<div class="span8 offset2">
+<div class="well">
+
+<%=render "shared/flash_notice"%>
+<h3>New Phone list</h3>
+<br>
+<%= nested_form_for @phonelist, :url => phone_list_create_path do |f| %>
+
+  <%= f.label "List Name" %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+  <br>
+     <div class="well">
+     <%= f.label "Contact Details" %>
+     <%= f.fields_for :lists do |list_form| %>
+       Name: <%= list_form.text_field :member %>
+       Number: <%= list_form.text_field :msisdn, :class => "input-small" %>
+       <%= list_form.link_to_remove "Remove",:class => "btn" %>
+     <% end %>
+    <p><%= f.link_to_add "Add a New Contact", :lists, :class => "btn" %></p>
+   </div>
+<br>
+  <%= f.submit "create" %>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,17 @@
+ <div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#Phone">Phone List</a>
+ <div id="Phone" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <thread>
+ <th>Name</th><th>Number</th>
+ </thread>
+ <tbody>
+    <%@list.each do |phonelist| %>
+    <tr>
+     <td><%=link_to phonelist.member,"#"%></td><td><%=link_to phonelist.msisdn,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+</div>
+</div>

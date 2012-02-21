@@ -1,0 +1,17 @@
+<h2>Edit Phone List</h2>
+<div class="row">
+<div class="span4">
+<div class="well">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%=@list.name%> Settings</li>
+        <%=render "shared/phonelist_edit_list"%>
+  </ul>
+  </div>
+  </div>
+<div class="span2.5">
+ <div class="well">
+ <a><%= link_to 'Delete Phone List', phone_list_destroy_path(@phonelist.id),:class=>"btn" %></a>
+ <a><%= link_to 'Back', root_path,:class=>"btn" %></a>
+</div>
+</div>
+</div>

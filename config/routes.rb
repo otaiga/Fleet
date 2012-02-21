@@ -3,9 +3,7 @@ Fleet::Application.routes.draw do
   get "api/index"
 
   get "page/about"
-
   get "page/support"
-
   get "page/terms"
 
   get "main/Index"
@@ -26,7 +24,12 @@ Fleet::Application.routes.draw do
   match "main/device_destroy" => "main#device_destroy"
 
 
- resources :api
+  get "phone_list/show"
+  match "phone_list/create" => "phone_list#create"
+  match "phone_list/edit" => "phone_list#edit"
+  match "phone_list/destroy" => "phone_list#destroy"
+
+  resources :api
   devise_for :accounts
 
   # The priority is based upon order of creation:

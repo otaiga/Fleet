@@ -1,0 +1,9 @@
+<table class="table table-bordered table-striped">
+ <tbody>
+    <%@user.phonelists.all.each do|phonelist| %>
+    <tr>
+     <td><%=link_to phonelist.name, phone_list_edit_path(phonelist.id)%></td><td><%= link_to 'Delete', phone_list_destroy_path(phonelist.id),:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>

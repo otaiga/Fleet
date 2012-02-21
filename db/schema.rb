@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221111506) do
+ActiveRecord::Schema.define(:version => 20120221162433) do
 
   create_table "accounts", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -61,13 +61,30 @@ ActiveRecord::Schema.define(:version => 20120221111506) do
     t.integer  "policy_id"
   end
 
+  create_table "lists", :force => true do |t|
+    t.string   "member"
+    t.string   "msisdn"
+    t.integer  "phonelist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phonelists", :force => true do |t|
+    t.string   "name"
+    t.integer  "account_id", :null => false
+    t.integer  "policy_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "policies", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "account_id", :null => false
+    t.integer  "account_id",   :null => false
     t.boolean  "lock"
     t.string   "lock_pin"
+    t.integer  "phonelist_id"
   end
 
   create_table "settings", :force => true do |t|
