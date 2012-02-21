@@ -32,9 +32,25 @@
        Number: <%= inbound_msisdn_form.text_field :msisdn %>
        <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
      <% end %>
-    <p><%= f.link_to_add "Add a Phone Number", :calls_inbound_msisdns, :class => "btn" %> <%= link_to "Add a Number List", "#", :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Phone Number", :calls_inbound_msisdns, :class => "btn" %>
+   </div>
+
+
+
+ <div class="well">
+ <h4>Call Settings</h4>
+   <div class="well">
+     <%= f.label "Authorised Numbers Inbound" %>
+     <%= f.fields_for :phonelists do |phonelist_form| %>
+       Name: <%= phonelist_form.text_field :name %>
+       <%= phonelist_form.link_to_remove "Remove",:class => "btn" %>
+     <% end %>
+    <p><%= f.link_to_add "Add a Number List", :phonelists, :class => "btn" %></p>
       <%= f.select :phonelist_id, options_for_select(phonelist_form)%>
    </div>
+
+
+
 
   <div class="well">
     <%= f.label "Authorised Numbers Outbound" %>

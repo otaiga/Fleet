@@ -1,7 +1,6 @@
 class Policy < ActiveRecord::Base
 	belongs_to :account
 	has_many :groups
-    has_many :phonelists
 	validates :name, :presence => true
     validates :lock, :inclusion => [true, false]
 
@@ -16,5 +15,8 @@ class Policy < ActiveRecord::Base
 
     has_many :sms_outbound_msisdns, :dependent => :destroy
     accepts_nested_attributes_for :sms_outbound_msisdns, :reject_if => lambda { |a| a[:msisdn].blank? }, :allow_destroy => true
+
+    has_many :phonelists, :dependent => :destroy
+    accepts_nested_attributes_for :phonelists, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
 end
