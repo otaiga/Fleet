@@ -1,5 +1,6 @@
  <%@user.groups.all.each do|group| %>
  <li class="span2">
+ <div class="well">
         <p><strong><%=group.name%></strong></p>
         </a>
         <p>Current Policy:<br>
@@ -16,6 +17,7 @@
           <li><a><%=link_to policy.name, policy_append_to_group_path([policy.id, group.id])%></a></li>
         <%end%>
         </ul>
+     </div>
      </div>
    </li>
  <%end%>

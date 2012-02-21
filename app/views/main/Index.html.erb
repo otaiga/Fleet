@@ -1,8 +1,7 @@
 <h1>Welcome <%=@user.email%></h1>
 
 <br>
-<div class="span1">&nbsp;</div>
-<div class="span3">
+<div class="span8">
   <div class="well">
    <h3>Device Groups</h3>
    <br>
@@ -12,7 +11,6 @@
   </div>
 </div>
 
-  <div class="span1">&nbsp;</div>
     <div class="span3">
       <div class="well sidebar-nav">
          <h3>Edit Policy</h3>
@@ -32,6 +30,16 @@
           </ul>
           <a><%= link_to "Create a Group", main_new_group_create_path, :class=>"btn" %></a>
           <a><%= link_to "Create a Device", main_new_device_create_path, :class=>"btn" %></a>
+        </div> 
+
+      <div class="well sidebar-nav">
+         <h3>Phone Number List</h3>
+         <ul class="nav nav-list">
+           <li class="nav-header">Available Lists</li>
+           <%=render "shared/group_list"%>
+           <%=render "shared/flash_notice"%>
+          </ul>
+          <a><%= link_to "Create a Phone Number List", main_new_group_create_path, :class=>"btn" %></a>
         </div> 
     </div> 
 
