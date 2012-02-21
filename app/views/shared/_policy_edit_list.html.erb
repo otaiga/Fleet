@@ -1,0 +1,77 @@
+ <div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#lock">Lock Settings</a>
+ <div id="lock" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <thread>
+ <th>Enabled</th><th>Pin</th>
+ </thread>
+ <tbody>
+    <tr>
+     <td><%=link_to @policy.lock,"#"%></td>
+     <td><%=link_to @policy.lock_pin,"#"%></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+ <div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCalls">Authorised Inbound Calls</a>
+ <div id="inboundCalls" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <tbody>
+    <%@inboundCalls.each do |inboundCall| %>
+    <tr>
+     <td><%=link_to inboundCall,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCalls">Authorised Outbound Calls</a>
+  <div id="outboundCalls" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <tbody>
+    <%@outboundCalls.each do |outboundCall| %>
+    <tr>
+     <td><%=link_to outboundCall,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+</div>
+</div>
+
+<div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Authorised Inbound SMS</a>
+ <div id="inboundSMS" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <tbody>
+    <%@inboundSMS.each do |inboundSms| %>
+    <tr>
+     <td><%=link_to inboundSms,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+</div>
+</div>
+
+<div class="well">
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Authorised Outbound SMS</a>
+  <div id="outboundSMS" class="collapse in">
+ <table class="table table-bordered table-striped">
+ <tbody>
+    <%@outboundSMS.each do |outboundSms| %>
+    <tr>
+     <td><%=link_to outboundSms,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+    </tr>
+    <%end%>
+    </tbody>
+</table>
+</div>
+</div>

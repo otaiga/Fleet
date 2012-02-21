@@ -4,8 +4,6 @@ before_filter :authenticate_account!
 
   def index
     @policy = Policy.new
-    @policy.calls_inbound_msisdns.build
-
   end
 
   def create
@@ -26,6 +24,11 @@ before_filter :authenticate_account!
   def edit
   	 @user = Account.find(current_account.id)
   	 @policy = @user.policies.find(params[:format])
+     
+     get_inbound_calls
+     get_outbound_calls
+     get_inbound_sms
+     get_outbound_sms
   end
 
   def destroy
@@ -43,5 +46,43 @@ before_filter :authenticate_account!
     redirect_to root_path
   end
 
+
+protected
+
+    def get_inbound_calls
+      @inboundCalls =[]
+      @policy_id = @policy.id
+      @calls_inbound = CallsInboundMsisdn.where(:policy_id => @policy_id)
+      @calls_inbound.each do |inboundCalls|
+      @inboundCalls << inboundCalls.msisdn
+      end
+    end
+
+    def get_outbound_calls
+      @outboundCalls =[]
+      @policy_id = @policy.id
+      @calls_outbound = CallsOutboundMsisdn.where(:policy_id => @policy_id)
+      @calls_outbound.each do |outboundCalls|
+      @outboundCalls << outboundCalls.msisdn
+      end
+    end
+
+    def get_inbound_sms
+      @inboundSMS =[]
+      @policy_id = @policy.id
+      @sms_inbound = SmsInboundMsisdn.where(:policy_id => @policy_id)
+      @sms_inbound.each do |inboundSms|
+      @inboundSMS << inboundSms.msisdn
+      end
+    end
+
+    def get_outbound_sms
+      @outboundSMS =[]
+      @policy_id = @policy.id
+      @sms_outbound = SmsOutboundMsisdn.where(:policy_id => @policy_id)
+      @sms_outbound.each do |outboundSms|
+      @outboundSMS << outboundSms.msisdn
+      end
+    end
 
 end

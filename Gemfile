@@ -9,7 +9,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'capistrano'
-
+gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 gem 'json'
 
 # Gems used only for assets and not required
