@@ -24,29 +24,15 @@
 
 
 
- <div class="well">
- <h4>Call Settings</h4>
-   <div class="well">
-     <%= f.label "Authorised Numbers Inbound" %>
-     <%= f.fields_for :calls_inbound_msisdns do |inbound_msisdn_form| %>
-       Number: <%= inbound_msisdn_form.text_field :msisdn %>
-       <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
-     <% end %>
-    <p><%= f.link_to_add "Add a Phone Number", :calls_inbound_msisdns, :class => "btn" %>
-   </div>
-
-
 
  <div class="well">
  <h4>Call Settings</h4>
    <div class="well">
      <%= f.label "Authorised Numbers Inbound" %>
-     <%= f.fields_for :phonelists do |phonelist_form| %>
-       Name: <%= phonelist_form.text_field :name %>
-       <%= phonelist_form.link_to_remove "Remove",:class => "btn" %>
-     <% end %>
-    <p><%= f.link_to_add "Add a Number List", :phonelists, :class => "btn" %></p>
-      <%= f.select :phonelist_id, options_for_select(phonelist_form)%>
+     <%= f.fields_for :calls_inbound_msisdns do |calls_inbound_msisdns| %>
+     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
+     <%end%>
+    <p><%= f.link_to_add "Add a Number List", :calls_inbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
    </div>
 
 
@@ -54,51 +40,51 @@
 
   <div class="well">
     <%= f.label "Authorised Numbers Outbound" %>
-     <%= f.fields_for :calls_outbound_msisdns do |inbound_msisdn_form| %>
-       Number: <%= inbound_msisdn_form.text_field :msisdn %>
-       <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
-     <% end %> 
-    <p><%= f.link_to_add "Add a Phone Number", :calls_outbound_msisdns, :class => "btn" %> <%= link_to "Add a Number List", "#", :class => "btn" %></p>
+     <%= f.fields_for :calls_outbound_msisdns do |calls_inbound_msisdns| %>
+     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
+     <%end%>
+    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
   </div>
 
 <!--   <%= f.label "Call Time Window" %>
   <%= f.text_field :name %> -->
 </div>
-
 
 
  <div class="well">
  <h4>Messaging Settings</h4>
   <div class="well">
-<%= f.label "Authorised Numbers Inbound" %>
-     <%= f.fields_for :sms_inbound_msisdns do |inbound_msisdn_form| %>
-       Number: <%= inbound_msisdn_form.text_field :msisdn %>
-       <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
-     <% end %>
-    <p><%= f.link_to_add "Add a Phone Number", :sms_inbound_msisdns, :class => "btn" %> <%= link_to "Add a Number List", "#", :class => "btn" %></p>
+     <%= f.label "Authorised Numbers Inbound" %>
+     <%= f.fields_for :sms_inbound_msisdns do |calls_inbound_msisdns| %>
+     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
+     <%end%>
+    <p><%= f.link_to_add "Add a Number List", :sms_inbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+
    </div>
 
   <div class="well">
     <%= f.label "Authorised Numbers Outbound" %>
-     <%= f.fields_for :sms_outbound_msisdns do |inbound_msisdn_form| %>
-       Number: <%= inbound_msisdn_form.text_field :msisdn %>
-      <%= inbound_msisdn_form.link_to_remove "Remove",:class => "btn" %>
-     <% end %> 
-    <p><%= f.link_to_add "Add a Phone Number", :sms_outbound_msisdns, :class => "btn" %> <%= link_to "Add a Number List", "#", :class => "btn" %></p>
+<%= f.fields_for :sms_outbound_msisdns do |calls_inbound_msisdns| %>
+     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
+     <%end%>
+    <p><%= f.link_to_add "Add a Number List", :sms_outbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+
   </div>
 <!--   <%= f.label "Call Time Window" %>
   <%= f.text_field :name %> -->
 </div>
 
+
  <div class="well">
  <h4>Appliction Settings</h4>
    <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Voice </label>
    <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> Messaging </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> appliction 3 </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> appliction 4 </label>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Maps </label>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> PhoneBook </label>
    </div>
 <br>
   <%= f.hidden_field :account_id, :value => current_account.id %>
+   <%= f.hidden_field :id, :value => @policy.id %>
   <%= f.submit "create", :class => "btn"%> 
   <p align="right"><%= link_to "Cancel", root_path, :class => "btn" %></p>
 <% end %>

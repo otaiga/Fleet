@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221162433) do
+ActiveRecord::Schema.define(:version => 20120222120438) do
 
   create_table "accounts", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(:version => 20120221162433) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "policy_id"
-    t.string   "msisdn"
+    t.integer  "phonelist_id"
   end
 
   create_table "calls_outbound_msisdns", :force => true do |t|
-    t.string   "msisdn"
     t.integer  "policy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phonelist_id"
   end
 
   create_table "devices", :force => true do |t|
@@ -71,10 +71,14 @@ ActiveRecord::Schema.define(:version => 20120221162433) do
 
   create_table "phonelists", :force => true do |t|
     t.string   "name"
-    t.integer  "account_id", :null => false
+    t.integer  "account_id",               :null => false
     t.integer  "policy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "calls_inbound_msisdn_id"
+    t.integer  "calls_outbound_msisdn_id"
+    t.integer  "sms_inbound_msisdn_id"
+    t.integer  "sms_outbound_msisdn_id"
   end
 
   create_table "policies", :force => true do |t|
@@ -93,17 +97,17 @@ ActiveRecord::Schema.define(:version => 20120221162433) do
   end
 
   create_table "sms_inbound_msisdns", :force => true do |t|
-    t.string   "msisdn"
     t.integer  "policy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phonelist_id"
   end
 
   create_table "sms_outbound_msisdns", :force => true do |t|
-    t.string   "msisdn"
     t.integer  "policy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phonelist_id"
   end
 
 end
