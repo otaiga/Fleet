@@ -23,7 +23,29 @@ before_filter :authenticate_account!
   def edit
   	 @phonelist = Phonelist.find(params[:format])
      @list = Phonelist.find(params[:format]).lists
+     @newlist = List.new
   end
+
+
+  def destroy_list_item
+     @phonelistid = params[:format][0]
+     @listid = params[:format][1]
+
+     Phonelist.find(@phonelistid)
+     List.destroy(@listid)
+     redirect_to phone_list_edit_path(@phonelistid)
+
+  end
+
+
+  def create_list_item  
+    List.create(:member => params["list"]["member"], :msisdn => params["list"]["msisdn"], :phonelist_id => params["list"]["phonelist_id"])
+
+    @phonelistid = params["list"]["phonelist_id"]
+    redirect_to phone_list_edit_path(@phonelistid)
+  end
+
+
 
   def destroy
     @phonelist = Phonelist.destroy(params[:format])

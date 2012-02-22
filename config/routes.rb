@@ -27,8 +27,9 @@ Fleet::Application.routes.draw do
   get "phone_list/show"
   match "phone_list/create" => "phone_list#create"
   match "phone_list/edit" => "phone_list#edit"
+  match "phone_list/destroy_list_item" => "phone_list#destroy_list_item"
   match "phone_list/destroy" => "phone_list#destroy"
-
+  match "phone_list/create_list_item" => "phone_list#create_list_item"
   resources :api
   devise_for :accounts
 

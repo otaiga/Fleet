@@ -30,41 +30,73 @@ before_filter :get_outbound_sms
 
 
 
-    def get_inbound_calls
-      @inboundCalls =[]
+   def get_inbound_calls
+      @inboundCalls ={}
       @policy_id = Account.find(1).policies.last.id
-      @calls_inbound = CallsInboundMsisdn.where(:policy_id => @policy_id)
-      @calls_inbound.each do |inboundCalls|
-      @inboundCalls << inboundCalls.msisdn
-      end
+      @policy= Policy.find(@policy_id)
+
+      @phonelist_ids = []
+      @policy.calls_inbound_msisdns.each { |phoneId| 
+      @phonelist_ids << phoneId.phonelist_id
+        }
+      @phonelist_ids.each {|phoneID|
+      Phonelist.find(phoneID).lists.each { |contact|
+      @inboundCalls[contact.member] = contact.msisdn
+        }
+      }
     end
 
     def get_outbound_calls
-      @outboundCalls =[]
+      @outboundCalls ={}
       @policy_id = Account.find(1).policies.last.id
-      @calls_outbound = CallsOutboundMsisdn.where(:policy_id => @policy_id)
-      @calls_outbound.each do |outboundCalls|
-      @outboundCalls << outboundCalls.msisdn
-      end
+      @policy= Policy.find(@policy_id)
+
+
+      @phonelist_ids = []
+      @policy.calls_outbound_msisdns.each { |phoneId| 
+      @phonelist_ids << phoneId.phonelist_id
+        }
+      @phonelist_ids.each {|phoneID|
+      Phonelist.find(phoneID).lists.each { |contact|
+      @outboundCalls[contact.member] = contact.msisdn
+      }
+    }
     end
 
     def get_inbound_sms
-      @inboundSMS =[]
+      @inboundSMS ={}
       @policy_id = Account.find(1).policies.last.id
-      @sms_inbound = SmsInboundMsisdn.where(:policy_id => @policy_id)
-      @sms_inbound.each do |inboundSms|
-      @inboundSMS << inboundSms.msisdn
-      end
+      @policy= Policy.find(@policy_id)
+
+
+      @phonelist_ids = []
+      @policy.sms_inbound_msisdns.each { |phoneId| 
+      @phonelist_ids << phoneId.phonelist_id
+        }
+      @phonelist_ids.each {|phoneID|
+      Phonelist.find(phoneID).lists.each { |contact|
+      @inboundSMS[contact.member] = contact.msisdn
+      }
+    }
     end
 
     def get_outbound_sms
-      @outboundSMS =[]
+      @outboundSMS ={}
       @policy_id = Account.find(1).policies.last.id
-      @sms_outbound = SmsOutboundMsisdn.where(:policy_id => @policy_id)
-      @sms_outbound.each do |outboundSms|
-      @outboundSMS << outboundSms.msisdn
-      end
+      @policy= Policy.find(@policy_id)
+
+
+      @phonelist_ids = []
+      @policy.sms_outbound_msisdns.each { |phoneId| 
+      @phonelist_ids << phoneId.phonelist_id
+        }
+      @phonelist_ids.each {|phoneID|
+      Phonelist.find(phoneID).lists.each { |contact|
+      @outboundSMS[contact.member] = contact.msisdn
+      }
+    }
     end
+
   
 end
 

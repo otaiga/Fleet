@@ -1,6 +1,6 @@
  <div class="well">
  <a class="accordion-toggle" data-toggle="collapse" data-target="#Phone">Phone List</a>
- <div id="Phone" class="collapse in">
+ <div id="Phone" class="collapse out">
  <table class="table table-bordered table-striped">
  <thread>
  <th>Name</th><th>Number</th>
@@ -8,10 +8,22 @@
  <tbody>
     <%@list.each do |phonelist| %>
     <tr>
-     <td><%=link_to phonelist.member,"#"%></td><td><%=link_to phonelist.msisdn,"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small" %></td>
+     <td><%=link_to phonelist.member,"#"%></td><td><%=link_to phonelist.msisdn,"#"%></td><td><%= link_to 'Delete', phone_list_destroy_list_item_path([@phonelist.id, phonelist.id]),:class=>"btn btn-small" %></td>
     </tr>
     <%end%>
     </tbody>
 </table>
 </div>
+
+<%= form_for @newlist, :url => phone_list_create_list_item_path do |f| %>
+
+  <%= f.label "Name" %>
+  <%= f.text_field :member %>
+  <%f.label "Phone Number"%>
+  <%= f.text_field :msisdn %>
+  <%= f.hidden_field :phonelist_id, :value => @phonelist.id %>
+  <%= f.submit 'Add Contact', :class => "btn btn-small" %>
+  <%end%>
+  <br>
+
 </div>
