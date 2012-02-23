@@ -27,19 +27,19 @@
   <body>
 
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+      <div class="navbar-inner" style="background:#2B99FB">
           <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" >
             <span class="i-bar"></span>
             <span class="i-bar"></span>
             <span class="i-bar"></span>
           </a>
-          <a class="brand"<%=link_to "FleetFone", root_path%>></a>
+          <%=link_to "FleetFone", root_path, :class=>"brand"%>
           <div class="container nav-collapse">
             <ul class="nav">
-                <li><%= link_to "about", page_about_path %></li>
-                <li><%= link_to "our terms", page_terms_path  %></li>
-                <li><%= link_to "support", page_support_path  %></li>
+                <li> <%= link_to "about", page_about_path %> </li>
+                <li> <%= link_to "our terms", page_terms_path %> </li>
+                <li> <%= link_to "support", page_support_path  %> </li>
                  <% if account_signed_in? %>
                   <li><%= link_to('Logout', destroy_account_session_path, :method =>:delete) %></li>
                   <% end %>         

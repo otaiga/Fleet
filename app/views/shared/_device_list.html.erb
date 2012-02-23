@@ -1,5 +1,5 @@
   <a class="accordion-toggle" data-toggle="collapse" data-target="#Numberlist">Number List</a>
-  <div id="Numberlist" class="collapse in">
+  <div id="Numberlist" class="collapse out">
  <table class="table table-bordered table-striped">
  <thread>
  <tr>
@@ -9,7 +9,7 @@
  <tbody>
     <%@devices.each do|device| %>
     <tr>
-     <td><%=device_name(device)%></td><td><%=device.msisdn%></td><td><%= link_to 'Delete', main_device_destroy_path([device.id, @group.id]),:class=>"btn btn-small" %></td>
+     <td><%=device_name(device)%></td><td><%=device.msisdn%></td><td><%= link_to 'Delete', main_device_destroy_path([device.id, @group.id]),:class=>"btn btn-small btn-danger" %></td>
     </tr>
     <%end%>
     </tbody>

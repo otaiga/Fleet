@@ -8,7 +8,7 @@
  <tbody>
     <%@list.each do |phonelist| %>
     <tr>
-     <td><%=link_to phonelist.member,"#"%></td><td><%=link_to phonelist.msisdn,"#"%></td><td><%= link_to 'Delete', phone_list_destroy_list_item_path([@phonelist.id, phonelist.id]),:class=>"btn btn-small" %></td>
+     <td><%=link_to phonelist.member,"#"%></td><td><%=link_to phonelist.msisdn,"#"%></td><td><%= link_to 'Delete', phone_list_destroy_list_item_path([@phonelist.id, phonelist.id]),:class=>"btn btn-small btn-danger" %></td>
     </tr>
     <%end%>
     </tbody>
@@ -22,7 +22,7 @@
   <%f.label "Phone Number"%>
   <%= f.text_field :msisdn %>
   <%= f.hidden_field :phonelist_id, :value => @phonelist.id %>
-  <%= f.submit 'Add Contact', :class => "btn btn-small" %>
+  <%= f.submit 'Add Contact', :class => "btn btn-small btn-primary" %>
   <%end%>
   <br>
 

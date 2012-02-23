@@ -32,7 +32,7 @@
      <%= f.fields_for :calls_inbound_msisdns do |calls_inbound_msisdns| %>
      <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
      <%end%>
-    <p><%= f.link_to_add "Add a Number List", :calls_inbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Number List", :calls_inbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
    </div>
 
 
@@ -43,7 +43,7 @@
      <%= f.fields_for :calls_outbound_msisdns do |calls_inbound_msisdns| %>
      <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
      <%end%>
-    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
   </div>
 
 <!--   <%= f.label "Call Time Window" %>
@@ -58,7 +58,7 @@
      <%= f.fields_for :sms_inbound_msisdns do |calls_inbound_msisdns| %>
      <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
      <%end%>
-    <p><%= f.link_to_add "Add a Number List", :sms_inbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Number List", :sms_inbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
 
    </div>
 
@@ -67,7 +67,7 @@
 <%= f.fields_for :sms_outbound_msisdns do |calls_inbound_msisdns| %>
      <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
      <%end%>
-    <p><%= f.link_to_add "Add a Number List", :sms_outbound_msisdns, :class => "btn" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Number List", :sms_outbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
 
   </div>
 <!--   <%= f.label "Call Time Window" %>
@@ -85,7 +85,7 @@
 <br>
   <%= f.hidden_field :account_id, :value => current_account.id %>
    <%= f.hidden_field :id, :value => @policy.id %>
-  <%= f.submit "create", :class => "btn"%> 
+  <%= f.submit "create", :class => "btn btn-primary"%> 
   <p align="right"><%= link_to "Cancel", root_path, :class => "btn" %></p>
 <% end %>
 </div>
