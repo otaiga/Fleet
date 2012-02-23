@@ -1,3 +1,3 @@
 class Setting < ActiveRecord::Base
-	belongs_to :account
+	belongs_to :policy
 end

@@ -7,8 +7,48 @@
  </thread>
  <tbody>
     <tr>
-     <td><%=link_to @policy.lock,"#"%></td>
+     <td><%=link_to @policy.lock,"false"%></td>
      <td><%=link_to @policy.lock_pin,"#"%></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<br>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#Applications">Applications</a>
+ <div id="Applications" class="collapse in">
+ <table class="table table-bordered table-striped">
+  <thread>
+ <th>Voice</th><th>Messaging</th>
+ </thread>
+  <tbody>
+    <tr>
+     <td><%=link_to @policy.voice,"false"%></td>
+     <td><%=link_to @policy.messaging,"false"%></td>
+    </tr>
+    </tbody>
+ </table>
+ <table class="table table-bordered table-striped">
+   <thread>
+ <th>Maps</th><th>Phonebook</th>
+  </thread>
+    <tbody>
+    <tr>
+     <td><%=link_to @policy.maps,"false"%></td>
+     <td><%=link_to @policy.phonebook,"false"%></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+ <table class="table table-bordered table-striped">
+ <thread>
+<th>Browsing</th><th>Notes</th>
+ </thread>
+   <tbody>
+    <tr>
+     <td><%=link_to @policy.browsing,"false"%></td>
+     <td><%=link_to @policy.notes,"false"%></td>
     </tr>
     </tbody>
 </table>

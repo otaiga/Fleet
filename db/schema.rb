@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222120438) do
+ActiveRecord::Schema.define(:version => 20120223134624) do
 
   create_table "accounts", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(:version => 20120222120438) do
     t.boolean  "lock"
     t.string   "lock_pin"
     t.integer  "phonelist_id"
+    t.boolean  "voice"
+    t.boolean  "messaging"
+    t.boolean  "maps"
+    t.boolean  "phonebook"
+    t.boolean  "browsing"
+    t.boolean  "notes"
   end
 
   create_table "settings", :force => true do |t|
