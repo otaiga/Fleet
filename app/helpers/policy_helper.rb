@@ -5,4 +5,10 @@ module PolicyHelper
     @phonelist.map { |list| [ list.name, list.id] }
   end
 
+
+
+  def phonelist_id(listid)
+    @name = Phonelist.find(listid).name
+
+  end
 end

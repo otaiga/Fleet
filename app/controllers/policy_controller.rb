@@ -53,15 +53,19 @@ protected
       @inboundCalls ={}
       @policy_id = @policy.id
 
-      @phonelist_ids = []
+      @inboundCallsphonelist_ids = []
       @policy.calls_inbound_msisdns.each { |phoneId| 
-      @phonelist_ids << phoneId.phonelist_id
+      @inboundCallsphonelist_ids << phoneId.phonelist_id
         }
-      @phonelist_ids.each {|phoneID|
-      Phonelist.find(phoneID).lists.each { |contact|
-      @inboundCalls[contact.member] = contact.msisdn
+      unless @inboundCallsphonelist_ids == nil
+        @inboundCallsphonelist_ids.each {|phoneID|
+        unless Phonelist.where(:id => phoneID) == []
+        Phonelist.find(phoneID).lists.each { |contact|
+        @inboundCalls[contact.member] = contact.msisdn
+          }
+        end
         }
-      }
+      end
     end
 
     def get_outbound_calls
@@ -69,15 +73,19 @@ protected
       @policy_id = @policy.id
 
 
-      @phonelist_ids = []
+      @outboundCallsphonelist_ids = []
       @policy.calls_outbound_msisdns.each { |phoneId| 
-      @phonelist_ids << phoneId.phonelist_id
+      @outboundCallsphonelist_ids << phoneId.phonelist_id
         }
-      @phonelist_ids.each {|phoneID|
-      Phonelist.find(phoneID).lists.each { |contact|
-      @outboundCalls[contact.member] = contact.msisdn
-      }
-    }
+      unless @outboundCallsphonelist_ids == nil
+        @outboundCallsphonelist_ids.each {|phoneID|
+        unless Phonelist.where(:id => phoneID) == []
+          Phonelist.find(phoneID).lists.each { |contact|
+          @outboundCalls[contact.member] = contact.msisdn
+            }
+          end
+          }
+      end
     end
 
     def get_inbound_sms
@@ -85,15 +93,19 @@ protected
       @policy_id = @policy.id
 
 
-      @phonelist_ids = []
+      @inboundSMSphonelist_ids = []
       @policy.sms_inbound_msisdns.each { |phoneId| 
-      @phonelist_ids << phoneId.phonelist_id
+      @inboundSMSphonelist_ids << phoneId.phonelist_id
         }
-      @phonelist_ids.each {|phoneID|
-      Phonelist.find(phoneID).lists.each { |contact|
-      @inboundSMS[contact.member] = contact.msisdn
-      }
-    }
+      unless @inboundSMSphonelist_ids == nil
+        @inboundSMSphonelist_ids.each {|phoneID|
+        unless Phonelist.where(:id => phoneID) == []
+        Phonelist.find(phoneID).lists.each { |contact|
+        @inboundSMS[contact.member] = contact.msisdn
+          }
+        end
+        }
+      end
     end
 
     def get_outbound_sms
@@ -101,15 +113,19 @@ protected
       @policy_id = @policy.id
 
 
-      @phonelist_ids = []
+      @outboundSMSphonelist_ids = []
       @policy.sms_outbound_msisdns.each { |phoneId| 
-      @phonelist_ids << phoneId.phonelist_id
+      @outboundSMSphonelist_ids << phoneId.phonelist_id
         }
-      @phonelist_ids.each {|phoneID|
-      Phonelist.find(phoneID).lists.each { |contact|
-      @outboundSMS[contact.member] = contact.msisdn
-      }
-    }
+      unless @outboundSMSphonelist_ids == nil
+        @outboundSMSphonelist_ids.each {|phoneID|
+        unless Phonelist.where(:id => phoneID) == []
+        Phonelist.find(phoneID).lists.each { |contact|
+        @outboundSMS[contact.member] = contact.msisdn
+          }
+        end
+        }
+      end
     end
 
 end

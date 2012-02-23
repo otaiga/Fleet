@@ -48,6 +48,36 @@ before_filter :authenticate_account!
 
 
   def destroy
+    @inboundcalls = CallsInboundMsisdn.where(:phonelist_id => (params[:format]))
+
+    @inboundcalls.each { |inboundcalls|
+      CallsInboundMsisdn.destroy(inboundcalls.id)
+    }
+
+   
+    @outboundcalls = CallsOutboundMsisdn.where(:phonelist_id => (params[:format]))
+
+    @outboundcalls.each { |outboundcalls|
+      CallsOutboundMsisdn.destroy(outboundcalls.id)
+    }
+
+
+    @inboundsms = SmsInboundMsisdn.where(:phonelist_id => (params[:format]))
+
+    @inboundsms.each { |inboundsms|
+      SmsInboundMsisdn.destroy(inboundsms.id)
+    }
+
+
+    @outboundsms = SmsOutboundMsisdn.where(:phonelist_id => (params[:format]))
+
+    @outboundsms.each { |outboundsms|
+      SmsOutboundMsisdn.destroy(outboundsms.id)
+    }
+
+
+
+    
     @phonelist = Phonelist.destroy(params[:format])
     redirect_to root_path
   end

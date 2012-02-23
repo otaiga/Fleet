@@ -16,7 +16,24 @@
 </div>
 
  <div class="well">
- <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCalls">Authorised Inbound Calls</a>
+ <h4>Authorised for Inbound calls</h4> 
+ <br>
+<a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCallphonelist">Phone list(s) used</a>
+<div id="inboundCallphonelist" class="collapse out">
+<table class="table table-bordered table-striped">
+  <tbody>
+ <%unless @inboundCallsphonelist_ids == nil %>
+   <%@inboundCallsphonelist_ids.each do |id| %>
+   <tr>
+   <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+   </tr>
+   <%end%>
+ <%end%>
+</tbody>
+</table>
+</div>
+<br>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCalls">Inbound contacts</a>
  <div id="inboundCalls" class="collapse in">
  <table class="table table-bordered table-striped">
   <thread>
@@ -25,7 +42,7 @@
  <tbody>
     <%@inboundCalls.each do |inboundCall| %>
     <tr>
-     <td><%=link_to inboundCall[0],"#"%></td><td><%=link_to inboundCall[1],"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small btn-danger" %></td>
+     <td><%=link_to inboundCall[0],"#"%></td><td><%=link_to inboundCall[1],"#"%></td>
     </tr>
     <%end%>
     </tbody>
@@ -35,13 +52,30 @@
 
 
 <div class="well">
- <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCalls">Authorised Outbound Calls</a>
+<h4>Authorised for Outbound calls</h4> 
+ <br>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCallphonelist">Phone list(s) used</a>
+<div id="outboundCallphonelist" class="collapse out">
+<table class="table table-bordered table-striped">
+  <tbody>
+ <%unless @outboundCallsphonelist_ids == nil%>
+ <%@outboundCallsphonelist_ids.each do |id| %>
+ <tr>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+</tr>
+ <%end%>
+ <%end%>
+</tbody>
+</table>
+</div>
+<br>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCalls">Outbound contacts</a>
   <div id="outboundCalls" class="collapse in">
  <table class="table table-bordered table-striped">
  <tbody>
     <%@outboundCalls.each do |outboundCall| %>
     <tr>
-     <td><%=link_to outboundCall[0],"#"%></td><td><%=link_to outboundCall[1],"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small btn-danger" %></td>
+     <td><%=link_to outboundCall[0],"#"%></td><td><%=link_to outboundCall[1],"#"%></td>
     </tr>
     <%end%>
     </tbody>
@@ -50,13 +84,29 @@
 </div>
 
 <div class="well">
- <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Authorised Inbound SMS</a>
+<h4>Authorised for Inbound SMS</h4> 
+ <br>
+  <a class="accordion-toggle" data-toggle="collapse" data-target="#INboundSMSphonelist">Phone list(s) used</a>
+<div id="INboundSMSphonelist" class="collapse out">
+<table class="table table-bordered table-striped">
+  <tbody>
+ <%unless @inboundSMSphonelist_ids == nil %>
+ <%@inboundSMSphonelist_ids.each do |id| %>
+ <tr>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+</tr>
+ <%end%>
+ <%end%>
+</tbody>
+</table>
+</div>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Inbound contacts</a>
  <div id="inboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
  <tbody>
     <%@inboundSMS.each do |inboundSms| %>
     <tr>
-    <td><%=link_to inboundSms[0],"#"%></td><td><%=link_to inboundSms[1],"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small btn-danger" %></td>
+    <td><%=link_to inboundSms[0],"#"%></td><td><%=link_to inboundSms[1],"#"%></td>
     </tr>
     <%end%>
     </tbody>
@@ -65,13 +115,29 @@
 </div>
 
 <div class="well">
- <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Authorised Outbound SMS</a>
+<h4>Authorised for Outbound SMS</h4> 
+ <br>
+   <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMSphonelist">Phone list(s) used</a>
+<div id="outboundSMSphonelist" class="collapse out">
+<table class="table table-bordered table-striped">
+  <tbody>
+ <%unless @outboundSMSphonelist_ids == nil%>
+ <%@outboundSMSphonelist_ids.each do |id| %>
+ <tr>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+</tr>
+ <%end%>
+ <%end%>
+</tbody>
+</table>
+</div>
+ <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Outbound contacts</a>
   <div id="outboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
  <tbody>
     <%@outboundSMS.each do |outboundSms| %>
     <tr>
-     <td><%=link_to outboundSms[0],"#"%></td><td><%=link_to outboundSms[1],"#"%></td><td><%= link_to 'Delete',"#",:class=>"btn btn-small btn-danger" %></td>
+     <td><%=link_to outboundSms[0],"#"%></td><td><%=link_to outboundSms[1],"#"%></td>
     </tr>
     <%end%>
     </tbody>
