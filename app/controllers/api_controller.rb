@@ -1,9 +1,6 @@
 class ApiController < ApplicationController
 # before_filter :http_basic_authentication
-before_filter :get_inbound_calls
-before_filter :get_outbound_calls
-before_filter :get_inbound_sms
-before_filter :get_outbound_sms
+
 
   def index
     @params = params[:msisdn]
@@ -11,6 +8,12 @@ before_filter :get_outbound_sms
     get_mobile
     unless @member.count == 0
     @policy = Policy.find(@memberpolicy)
+
+    get_inbound_calls
+    get_outbound_calls
+    get_inbound_sms
+    get_outbound_sms
+
     @all = ["Policy Name" => @policy.name, "Settings" => {"Lock Settings" => @policy.lock,  "Lock Pin" => @policy.lock_pin, "Voice" => @policy.voice, "Messaging" => @policy.messaging, "Maps" => @policy.maps, "Phonebook" => @policy.phonebook, "Browsing" => @policy.browsing, "Notes" => @policy.notes}, "NumberList" => {"inbound calls" => @inboundCalls, "oubound calls" => @outboundCalls, "inbound sms" => @inboundSMS, "oubound sms" => @outboundSMS}]
     respond_to do |format|
       format.xml { render :xml => @all.to_xml }
@@ -42,20 +45,24 @@ before_filter :get_outbound_sms
 
 
     def get_mobile
-      @mobile = Group.all.each { |group|
+      @mobile = []
+      Group.all.each { |group|
       @member = group.devices.where(:msisdn => @params)
-        if @member.count == 0
+      unless @member == []
+        @mobile << @member.last.group_id  
+      end
+        }    
+        if @mobile.count == 0
+          p @mobile
            return
         else
-          @memberpolicy = Group.find(@member.last.group_id).policy_id
+          @memberpolicy = Group.find(@mobile.last).policy_id
         end
-      }
     end
+
 
    def get_inbound_calls
       @inboundCalls ={}
-      @policy_id = Account.find(1).policies.last.id
-      @policy= Policy.find(@policy_id)
 
       @phonelist_ids = []
       @policy.calls_inbound_msisdns.each { |phoneId| 
@@ -70,8 +77,6 @@ before_filter :get_outbound_sms
 
     def get_outbound_calls
       @outboundCalls ={}
-      @policy_id = Account.find(1).policies.last.id
-      @policy= Policy.find(@policy_id)
 
 
       @phonelist_ids = []
@@ -87,8 +92,6 @@ before_filter :get_outbound_sms
 
     def get_inbound_sms
       @inboundSMS ={}
-      @policy_id = Account.find(1).policies.last.id
-      @policy= Policy.find(@policy_id)
 
 
       @phonelist_ids = []
@@ -104,8 +107,7 @@ before_filter :get_outbound_sms
 
     def get_outbound_sms
       @outboundSMS ={}
-      @policy_id = Account.find(1).policies.last.id
-      @policy= Policy.find(@policy_id)
+
 
 
       @phonelist_ids = []
