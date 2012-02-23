@@ -9,7 +9,7 @@
  <tbody>
     <%@devices.each do|device| %>
     <tr>
-     <td><%=device_name(device)%></td><td><%=device.msisdn%></td><td><%= link_to 'Delete', main_device_destroy_path([device.id, @group.id]),:class=>"btn btn-small btn-danger" %></td>
+     <td><%=device_name(device)%></td><td><%=device.msisdn%></td><td><%= link_to 'Delete', main_device_destroy_path([device.id, @group.id]), :confirm => "Are you sure?", :class=>"btn btn-small btn-danger" %></td>
     </tr>
     <%end%>
     </tbody>

@@ -2,7 +2,7 @@
  <tbody>
     <%@user.policies.all.each do|policy| %>
     <tr>
-     <td><%=link_to policy.name, policy_edit_path(policy.id)%></td><td><%= link_to 'Delete', policy_destroy_path(policy.id),:class=>"btn btn-small btn-danger" %></td>
+     <td><%=link_to policy.name, policy_edit_path(policy.id)%></td><td><%= link_to 'Delete', policy_destroy_path(policy.id),:confirm => "Are you sure?", :class=>"btn btn-small btn-danger" %></td>
     </tr>
     <%end%>
     </tbody>

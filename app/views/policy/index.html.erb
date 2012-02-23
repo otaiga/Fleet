@@ -25,10 +25,16 @@
 
  <div class="well">
  <h4>Appliction Settings</h4>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Voice </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> Messaging </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Maps </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> PhoneBook </label>
+ <br>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3" %> Voice </label>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3"  %> Messaging </label>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3" %> Maps </label>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3"  %> PhoneBook </label>
+   <br>
+   <br>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3"  %> Browsing </label>
+   <label class="checkbox inline"> <%= f.check_box :lock, :id=>"optionsRadios3"  %> Notes </label>
+
    </div>
 
 
