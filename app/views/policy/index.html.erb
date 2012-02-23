@@ -23,6 +23,13 @@
  </div>
 
 
+ <div class="well">
+ <h4>Appliction Settings</h4>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Voice </label>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> Messaging </label>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Maps </label>
+   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> PhoneBook </label>
+   </div>
 
 
  <div class="well">
@@ -74,14 +81,6 @@
   <%= f.text_field :name %> -->
 </div>
 
-
- <div class="well">
- <h4>Appliction Settings</h4>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Voice </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> Messaging </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, true, :id=>"optionsRadios1" %> Maps </label>
-   <label class="radio inline"> <%= f.radio_button :calls_inbound_msisdns, false, :id=>"optionsRadios2"  %> PhoneBook </label>
-   </div>
 <br>
   <%= f.hidden_field :account_id, :value => current_account.id %>
    <%= f.hidden_field :id, :value => @policy.id %>
