@@ -6,7 +6,7 @@ class ApiController < ApplicationController
     @params = params[:msisdn]
 
     get_mobile
-    unless @member.count == 0
+    unless @memberpolicy == nil
     @policy = Policy.find(@memberpolicy)
 
     get_inbound_calls
@@ -53,7 +53,6 @@ class ApiController < ApplicationController
       end
         }    
         if @mobile.count == 0
-          p @mobile
            return
         else
           @memberpolicy = Group.find(@mobile.last).policy_id
