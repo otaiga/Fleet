@@ -101,7 +101,7 @@
  <%unless @inboundCallsphonelist_ids == nil %>
    <%@inboundCallsphonelist_ids.each do |id| %>
    <tr>
-   <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
+   <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatecallinbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
    </tr>
    <%end%>
  <%end%>
@@ -137,7 +137,7 @@
  <%unless @outboundCallsphonelist_ids == nil%>
  <%@outboundCallsphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatecalloutbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
  <%end%>
@@ -148,6 +148,9 @@
  <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCalls">Outbound contacts</a>
   <div id="outboundCalls" class="collapse in">
  <table class="table table-bordered table-striped">
+  <thread>
+    <th>Name</th><th>Number</th>
+  </thread>
  <tbody>
     <%@outboundCalls.each do |outboundCall| %>
     <tr>
@@ -169,7 +172,7 @@
  <%unless @inboundSMSphonelist_ids == nil %>
  <%@inboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatesmsinbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
  <%end%>
@@ -180,6 +183,9 @@
  <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Inbound contacts</a>
  <div id="inboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
+    <thread>
+    <th>Name</th><th>Number</th>
+  </thread>
  <tbody>
     <%@inboundSMS.each do |inboundSms| %>
     <tr>
@@ -201,8 +207,7 @@
  <%unless @outboundSMSphonelist_ids == nil%>
  <%@outboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
-</tr>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatesmsoutbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
  <%end%>
  <%end%>
 </tbody>
@@ -212,6 +217,9 @@
  <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Outbound contacts</a>
   <div id="outboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
+    <thread>
+    <th>Name</th><th>Number</th>
+  </thread>
  <tbody>
     <%@outboundSMS.each do |outboundSms| %>
     <tr>

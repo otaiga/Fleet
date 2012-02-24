@@ -33,6 +33,47 @@ before_filter :authenticate_account!
   end
 
 
+  def updatecallinbound
+    @policy_id = params[:format][0]
+    @phonelist_id = params[:format][1]
+    @policy = Policy.find(@policy_id)
+    @inboundremove = @policy.calls_inbound_msisdns.where(:phonelist_id => @phonelist_id)
+    CallsInboundMsisdn.destroy(@inboundremove.last.id)
+    redirect_to policy_edit_path(params[:format][0])
+  end
+
+  def updatecalloutbound
+    @policy_id = params[:format][0]
+    @phonelist_id = params[:format][1]
+    @policy = Policy.find(@policy_id)
+    @outboundremove = @policy.calls_outbound_msisdns.where(:phonelist_id => @phonelist_id)
+    CallsOutboundMsisdn.destroy(@outboundremove.last.id)
+    redirect_to policy_edit_path(params[:format][0])
+  end
+
+
+
+  def updatesmsinbound
+    @policy_id = params[:format][0]
+    @phonelist_id = params[:format][1]
+    @policy = Policy.find(@policy_id)
+    @smsinboundremove = @policy.sms_inbound_msisdns.where(:phonelist_id => @phonelist_id)
+    SmsInboundMsisdn.destroy(@smsinboundremove.last.id)
+    redirect_to policy_edit_path(params[:format][0])
+  end
+
+  def updatesmsoutbound
+    @policy_id = params[:format][0]
+    @phonelist_id = params[:format][1]
+    @policy = Policy.find(@policy_id)
+    @smsoutboundremove = @policy.sms_outbound_msisdns.where(:phonelist_id => @phonelist_id)
+    SmsOutboundMsisdn.destroy(@smsoutboundremove.last.id)
+    redirect_to policy_edit_path(params[:format][0])
+  end
+
+
+
+
   def edit
   	 @user = Account.find(current_account.id)
   	 @policy = @user.policies.find(params[:format])
