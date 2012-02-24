@@ -33,6 +33,9 @@ before_filter :authenticate_account!
   end
 
 
+
+
+#Removes the callists ..
   def updatecallinbound
     @policy_id = params[:format][0]
     @phonelist_id = params[:format][1]
@@ -70,6 +73,47 @@ before_filter :authenticate_account!
     SmsOutboundMsisdn.destroy(@smsoutboundremove.last.id)
     redirect_to policy_edit_path(params[:format][0])
   end
+
+
+
+
+#adds the call lists
+  def updateaddcallinbound
+    @policy_id = params[:policy][:id]
+    @phonelist_id = params[:policy][:phonelist_id]
+    @policy = Policy.find(@policy_id)
+    CallsInboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
+  def updateaddcalloutbound
+    @policy_id = params[:policy][:id]
+    @phonelist_id = params[:policy][:phonelist_id]
+    @policy = Policy.find(@policy_id)
+    CallsOutboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
+
+
+  def updateaddsmsinbound
+    @policy_id = params[:policy][:id]
+    @phonelist_id = params[:policy][:phonelist_id]
+    @policy = Policy.find(@policy_id)
+    SmsInboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
+  def updateaddsmsoutbound
+    @policy_id = params[:policy][:id]
+    @phonelist_id = params[:policy][:phonelist_id]
+    @policy = Policy.find(@policy_id)
+    SmsOutboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
+
+
 
 
 

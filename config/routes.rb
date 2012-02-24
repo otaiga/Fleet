@@ -28,6 +28,13 @@ Fleet::Application.routes.draw do
   match "policy/updatesmsinbound" => "policy#updatesmsinbound"
   match "policy/updatesmsoutbound" => "policy#updatesmsoutbound"
 
+  match "policy/updateaddcallinbound" => "policy#updateaddcallinbound"
+  match "policy/updateaddcalloutbound" => "policy#updateaddcalloutbound"
+  match "policy/updateaddsmsinbound" => "policy#updateaddsmsinbound"
+  match "policy/updateaddsmsoutbound" => "policy#updateaddsmsoutbound"
+
+
+
 
 
   match "main/device_destroy" => "main#device_destroy"

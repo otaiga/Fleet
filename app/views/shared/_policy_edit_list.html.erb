@@ -108,6 +108,16 @@
 </tbody>
 </table>
 </div>
+<a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updatecalllistinbound">Add Phone List</a>
+      <div id="updatecalllistinbound" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updateaddcallinbound_path do |f| %>
+        <%= f.select :phonelist_id, options_for_select(phonelist)%>
+        <%= f.hidden_field :id, :value => @policy.id %>
+        <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
 <br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCalls">Inbound contacts</a>
  <div id="inboundCalls" class="collapse in">
@@ -144,6 +154,16 @@
 </tbody>
 </table>
 </div>
+<a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updatecalllistoutbound">Add Phone List</a>
+      <div id="updatecalllistoutbound" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updateaddcalloutbound_path do |f| %>
+        <%= f.select :phonelist_id, options_for_select(phonelist)%>
+        <%= f.hidden_field :id, :value => @policy.id %>
+        <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
 <br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCalls">Outbound contacts</a>
   <div id="outboundCalls" class="collapse in">
@@ -179,6 +199,16 @@
 </tbody>
 </table>
 </div>
+<a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updatesmslistinbound">Add Phone List</a>
+      <div id="updatesmslistinbound" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updateaddsmsinbound_path do |f| %>
+        <%= f.select :phonelist_id, options_for_select(phonelist)%>
+        <%= f.hidden_field :id, :value => @policy.id %>
+        <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
 <br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Inbound contacts</a>
  <div id="inboundSMS" class="collapse in">
@@ -213,6 +243,16 @@
 </tbody>
 </table>
 </div>
+<a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updatesmslistoutbound">Add Phone List</a>
+     <div id="updatesmslistoutbound" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updateaddsmsoutbound_path do |f| %>
+        <%= f.select :phonelist_id, options_for_select(phonelist)%>
+        <%= f.hidden_field :id, :value => @policy.id %>
+        <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
 <br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Outbound contacts</a>
   <div id="outboundSMS" class="collapse in">
