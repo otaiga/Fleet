@@ -20,6 +20,18 @@ before_filter :authenticate_account!
     end
   end
 
+  def updatesettings
+    @policy = Policy.find(params[:policy][:id])
+    @policy.update_attributes(:notes=>params[:policy][:notes], :messaging=>params[:policy][:messaging], :phonebook=>params[:policy][:phonebook], :maps=>params[:policy][:maps], :browsing=>params[:policy][:browsing], :voice=>params[:policy][:voice])
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
+  def updatelock
+    @policy = Policy.find(params[:policy][:id])
+    @policy.update_attributes(:lock=>params[:policy][:lock], :lock_pin=>params[:policy][:lock_pin])
+    redirect_to policy_edit_path(params[:policy][:id])
+  end
+
 
   def edit
   	 @user = Account.find(current_account.id)

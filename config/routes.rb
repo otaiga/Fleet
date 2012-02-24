@@ -20,6 +20,8 @@ Fleet::Application.routes.draw do
   match "policy/create" => "policy#create"
   match "policy/destroy" => "policy#destroy"
   match "policy/append_to_group" => "policy#append_to_group"
+  match "policy/updatesettings" => "policy#updatesettings"
+  match "policy/updatelock" => "policy#updatelock"
 
   match "main/device_destroy" => "main#device_destroy"
 

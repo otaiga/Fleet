@@ -1,45 +1,61 @@
- <div class="well">
- <a class="accordion-toggle" data-toggle="collapse" data-target="#lock">Lock Settings</a>
- <div id="lock" class="collapse in">
- <table class="table table-bordered table-striped">
- <thread>
- <th>Enabled</th><th>Pin</th>
- </thread>
- <tbody>
-    <tr>
-     <td><%=link_to @policy.lock,"false"%></td>
-     <td><%=link_to @policy.lock_pin,"#"%></td>
-    </tr>
-    </tbody>
-</table>
-</div>
-<br>
- <a class="accordion-toggle" data-toggle="collapse" data-target="#Applications">Applications</a>
- <div id="Applications" class="collapse in">
- <table class="table table-bordered table-striped">
-  <thread>
- <th>Voice</th><th>Messaging</th>
- </thread>
-  <tbody>
-    <tr>
-     <td><%=link_to @policy.voice,"false"%></td>
-     <td><%=link_to @policy.messaging,"false"%></td>
-    </tr>
-    </tbody>
- </table>
- <table class="table table-bordered table-striped">
-   <thread>
- <th>Maps</th><th>Phonebook</th>
-  </thread>
-    <tbody>
-    <tr>
-     <td><%=link_to @policy.maps,"false"%></td>
-     <td><%=link_to @policy.phonebook,"false"%></td>
-    </tr>
-    </tbody>
-</table>
+<div class="well">
+  <h4>Device Lock</h4> 
+    <a class="accordion-toggle" data-toggle="collapse" data-target="#lock">Lock Settings</a>
+    <div id="lock" class="collapse in">
+      <table class="table table-bordered table-striped">
+        <thread>
+          <th>Enabled</th><th>Pin</th>
+        </thread>
+        <tbody>
+          <tr>
+            <td><%=@policy.lock%></td>
+            <td><%=@policy.lock_pin%></td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updatelock">Update Lock Settings</a>
+      <div id="updatelock" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updatelock_path do |f| %>
+          <label class="radio inline"> <%= f.radio_button :lock, true, :id=>"optionsRadios1" %> On </label>
+          <label class="radio inline"> <%= f.radio_button :lock, false, :id=>"optionsRadios2"  %> Off </label>
+          <br>
+          <%= f.label "Pin Number" %>
+          <%= f.text_field :lock_pin, :class => "input-mini"%>
+          <%= f.hidden_field :id, :value => @policy.id %>
+          <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
+    </div>
+  </div>
 
-
+<div class="well">
+  <h4>Application Settings</h4> 
+  <a class="accordion-toggle" data-toggle="collapse" data-target="#Applications">Applications</a>
+  <div id="Applications" class="collapse in">
+    <table class="table table-bordered table-striped">
+      <thread>
+        <th>Voice</th><th>Messaging</th>
+      </thread>
+      <tbody>
+        <tr>
+          <td><%=@policy.voice%></td>
+          <td><%=@policy.messaging%></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered table-striped">
+      <thread>
+        <th>Maps</th><th>Phonebook</th>
+      </thread>
+      <tbody>
+        <tr>
+          <td><%=@policy.maps%></td>
+          <td><%=@policy.phonebook%></td>
+        </tr>
+      </tbody>
+    </table>
 
  <table class="table table-bordered table-striped">
  <thread>
@@ -47,13 +63,33 @@
  </thread>
    <tbody>
     <tr>
-     <td><%=link_to @policy.browsing,"false"%></td>
-     <td><%=link_to @policy.notes,"false"%></td>
+     <td><%=@policy.browsing%></td>
+     <td><%=@policy.notes%></td>
     </tr>
     </tbody>
 </table>
+ <a class="btn btn-small btn-primary" data-toggle="collapse" data-target="#updateapp">Update Application Settings</a>
+      <div id="updateapp" class="collapse in">
+        <br>
+        <%=form_for @policy, :url => policy_updatesettings_path do |f| %>
+          <label class="checkbox inline"> <%= f.check_box :voice, :id=>"optionsRadios3" %> Voice </label>
+          <label class="checkbox inline"> <%= f.check_box :messaging, :id=>"optionsRadios3"  %> Messaging </label>
+          <label class="checkbox inline"> <%= f.check_box :maps, :id=>"optionsRadios3" %> Maps </label>
+          <br>
+          <br>
+          <label class="checkbox inline"> <%= f.check_box :phonebook, :id=>"optionsRadios3"  %> PhoneBook </label>
+          <label class="checkbox inline"> <%= f.check_box :browsing, :id=>"optionsRadios3"  %> Browsing </label>
+          <label class="checkbox inline"> <%= f.check_box :notes, :id=>"optionsRadios3"  %> Notes </label>
+          <%= f.hidden_field :id, :value => @policy.id %>
+          <br>
+          <br>
+          <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+        <%end%>
+      </div>
 </div>
 </div>
+
+
 
  <div class="well">
  <h4>Authorised for Inbound calls</h4> 
@@ -65,7 +101,7 @@
  <%unless @inboundCallsphonelist_ids == nil %>
    <%@inboundCallsphonelist_ids.each do |id| %>
    <tr>
-   <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+   <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
    </tr>
    <%end%>
  <%end%>
@@ -82,7 +118,7 @@
  <tbody>
     <%@inboundCalls.each do |inboundCall| %>
     <tr>
-     <td><%=link_to inboundCall[0],"#"%></td><td><%=link_to inboundCall[1],"#"%></td>
+     <td><%=inboundCall[0]%></td><td><%=inboundCall[1]%></td>
     </tr>
     <%end%>
     </tbody>
@@ -101,7 +137,7 @@
  <%unless @outboundCallsphonelist_ids == nil%>
  <%@outboundCallsphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
  <%end%>
@@ -115,7 +151,7 @@
  <tbody>
     <%@outboundCalls.each do |outboundCall| %>
     <tr>
-     <td><%=link_to outboundCall[0],"#"%></td><td><%=link_to outboundCall[1],"#"%></td>
+     <td><%=outboundCall[0]%></td><td><%=outboundCall[1]%></td>
     </tr>
     <%end%>
     </tbody>
@@ -133,20 +169,21 @@
  <%unless @inboundSMSphonelist_ids == nil %>
  <%@inboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
  <%end%>
 </tbody>
 </table>
 </div>
+<br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundSMS">Inbound contacts</a>
  <div id="inboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
  <tbody>
     <%@inboundSMS.each do |inboundSms| %>
     <tr>
-    <td><%=link_to inboundSms[0],"#"%></td><td><%=link_to inboundSms[1],"#"%></td>
+    <td><%=inboundSms[0]%></td><td><%=inboundSms[1]%></td>
     </tr>
     <%end%>
     </tbody>
@@ -164,20 +201,21 @@
  <%unless @outboundSMSphonelist_ids == nil%>
  <%@outboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',phone_list_edit_path(id),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
  <%end%>
 </tbody>
 </table>
 </div>
+<br>
  <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMS">Outbound contacts</a>
   <div id="outboundSMS" class="collapse in">
  <table class="table table-bordered table-striped">
  <tbody>
     <%@outboundSMS.each do |outboundSms| %>
     <tr>
-     <td><%=link_to outboundSms[0],"#"%></td><td><%=link_to outboundSms[1],"#"%></td>
+     <td><%=outboundSms[0]%></td><td><%=outboundSms[1]%></td>
     </tr>
     <%end%>
     </tbody>
