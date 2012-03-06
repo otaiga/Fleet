@@ -115,7 +115,15 @@ before_filter :authenticate_account!
 
 
 
-
+  def next
+     @user = Account.find(current_account.id)
+     @policy = @user.policies.find(params[:format])
+     
+     get_inbound_calls
+     get_outbound_calls
+     get_inbound_sms
+     get_outbound_sms
+  end
 
 
 

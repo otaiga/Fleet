@@ -18,6 +18,7 @@ Fleet::Application.routes.draw do
 
   get "policy/index"
   get "policy/edit"
+  get "policy/next"
   match "policy/create" => "policy#create"
   match "policy/destroy" => "policy#destroy"
   match "policy/append_to_group" => "policy#append_to_group"

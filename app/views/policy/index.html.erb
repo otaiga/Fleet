@@ -38,60 +38,10 @@
    </div>
 
 
-  <div class="well">
-  <h4>Call Settings</h4>
-  <div class="well", id='call_inbound'>
-      <%= f.label "Authorised Numbers Inbound" %>
-      <%unless phonelist == nil %>
-        <%= f.fields_for :calls_inbound_msisdns do |calls_inbound_msisdns| %>
-        <p><%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%> <%= calls_inbound_msisdns.link_to_remove "x",:class => "btn btn-danger" %></p>
-        <%end%>
-      <%else%>
-         <p>No phonelist created</p>
-      <%end%>
-      <p><%= f.link_to_add "Add Existing Number List", :calls_inbound_msisdns, :class => "btn btn-primary" %> <a data-toggle="modal" class="btn" href="#myModal">Create a Number List</a></p>
-  </div>
-
-  <div class="well">
-    <%= f.label "Authorised Numbers Outbound" %>
-     <%= f.fields_for :calls_outbound_msisdns do |calls_inbound_msisdns| %>
-     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%> <%= calls_inbound_msisdns.link_to_remove "Remove",:class => "btn btn-danger" %>
-     <%end%>
-    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn btn-primary" %>
-  </div>
-
-<!--   <%= f.label "Call Time Window" %>
-  <%= f.text_field :name %> -->
-</div>
-
-
- <div class="well">
- <h4>Messaging Settings</h4>
-  <div class="well">
-     <%= f.label "Authorised Numbers Inbound" %>
-     <%= f.fields_for :sms_inbound_msisdns do |calls_inbound_msisdns| %>
-     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
-     <%end%>
-    <p><%= f.link_to_add "Add a Number List", :sms_inbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
-
-   </div>
-
-  <div class="well">
-    <%= f.label "Authorised Numbers Outbound" %>
-<%= f.fields_for :sms_outbound_msisdns do |calls_inbound_msisdns| %>
-     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
-     <%end%>
-    <p><%= f.link_to_add "Add a Number List", :sms_outbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
-
-  </div>
-<!--   <%= f.label "Call Time Window" %>
-  <%= f.text_field :name %> -->
-</div>
-
 <br>
   <%= f.hidden_field :account_id, :value => current_account.id %>
    <%= f.hidden_field :id, :value => @policy.id %>
-  <%= f.submit "Next", :class => "btn btn-primary"%> 
+  <%= f.submit "Next", :class => "btn btn-primary"%>
   <p align="right"><%= link_to "Cancel", root_path, :class => "btn" %></p>
 
 <% end %>
