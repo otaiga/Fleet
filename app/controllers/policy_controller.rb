@@ -12,8 +12,8 @@ before_filter :authenticate_account!
    
     if @policy.valid?
 
-    Policy.create(params[:policy])
-    redirect_to root_path
+    @policy.save
+    redirect_to policy_next_path(@policy.id)
 
     else
       flash.alert = "Please fill in all fields."
@@ -43,7 +43,12 @@ before_filter :authenticate_account!
     @policy = Policy.find(@policy_id)
     @inboundremove = @policy.calls_inbound_msisdns.where(:phonelist_id => @phonelist_id)
     CallsInboundMsisdn.destroy(@inboundremove.last.id)
-    redirect_to policy_edit_path(params[:format][0])
+
+    unless params[:format][2] !=nil
+      redirect_to policy_edit_path(params[:format][0])
+    else
+      redirect_to policy_next_path(params[:format][0])
+    end
   end
 
   def updatecalloutbound
@@ -52,7 +57,12 @@ before_filter :authenticate_account!
     @policy = Policy.find(@policy_id)
     @outboundremove = @policy.calls_outbound_msisdns.where(:phonelist_id => @phonelist_id)
     CallsOutboundMsisdn.destroy(@outboundremove.last.id)
-    redirect_to policy_edit_path(params[:format][0])
+    
+    unless params[:format][2] !=nil
+      redirect_to policy_edit_path(params[:format][0])
+    else
+      redirect_to policy_next_path(params[:format][0])
+    end
   end
 
 
@@ -63,7 +73,12 @@ before_filter :authenticate_account!
     @policy = Policy.find(@policy_id)
     @smsinboundremove = @policy.sms_inbound_msisdns.where(:phonelist_id => @phonelist_id)
     SmsInboundMsisdn.destroy(@smsinboundremove.last.id)
-    redirect_to policy_edit_path(params[:format][0])
+    
+    unless params[:format][2] !=nil
+      redirect_to policy_edit_path(params[:format][0])
+    else
+      redirect_to policy_next_path(params[:format][0])
+    end
   end
 
   def updatesmsoutbound
@@ -72,7 +87,12 @@ before_filter :authenticate_account!
     @policy = Policy.find(@policy_id)
     @smsoutboundremove = @policy.sms_outbound_msisdns.where(:phonelist_id => @phonelist_id)
     SmsOutboundMsisdn.destroy(@smsoutboundremove.last.id)
-    redirect_to policy_edit_path(params[:format][0])
+    
+    unless params[:format][2] !=nil
+      redirect_to policy_edit_path(params[:format][0])
+    else
+      redirect_to policy_next_path(params[:format][0])
+    end
   end
 
 
@@ -84,7 +104,12 @@ before_filter :authenticate_account!
     @phonelist_id = params[:policy][:phonelist_id]
     @policy = Policy.find(@policy_id)
     CallsInboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
-    redirect_to policy_edit_path(params[:policy][:id])
+
+    unless params[:format] != nil
+      redirect_to policy_edit_path(params[:policy][:id])
+    else
+      redirect_to policy_next_path(params[:policy][:id])
+    end
   end
 
   def updateaddcalloutbound
@@ -92,7 +117,12 @@ before_filter :authenticate_account!
     @phonelist_id = params[:policy][:phonelist_id]
     @policy = Policy.find(@policy_id)
     CallsOutboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
-    redirect_to policy_edit_path(params[:policy][:id])
+    
+    unless params[:format] != nil
+      redirect_to policy_edit_path(params[:policy][:id])
+    else
+      redirect_to policy_next_path(params[:policy][:id])
+    end
   end
 
 
@@ -102,7 +132,12 @@ before_filter :authenticate_account!
     @phonelist_id = params[:policy][:phonelist_id]
     @policy = Policy.find(@policy_id)
     SmsInboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
-    redirect_to policy_edit_path(params[:policy][:id])
+    
+    unless params[:format] != nil
+      redirect_to policy_edit_path(params[:policy][:id])
+    else
+      redirect_to policy_next_path(params[:policy][:id])
+    end
   end
 
   def updateaddsmsoutbound
@@ -110,7 +145,12 @@ before_filter :authenticate_account!
     @phonelist_id = params[:policy][:phonelist_id]
     @policy = Policy.find(@policy_id)
     SmsOutboundMsisdn.create(:policy_id =>@policy_id, :phonelist_id => @phonelist_id)
-    redirect_to policy_edit_path(params[:policy][:id])
+    
+    unless params[:format] != nil
+      redirect_to policy_edit_path(params[:policy][:id])
+    else
+      redirect_to policy_next_path(params[:policy][:id])
+    end
   end
 
 

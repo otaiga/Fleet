@@ -6,7 +6,7 @@
 
 <%=render "shared/flash_notice"%>
 
-<h3>New Policy</h3><p align="right"><%= link_to "Create a New Number List", root_path, :class => "btn" %></p>
+<h3>New Policy</h3><p align="right"><%= link_to "Create a New Number List", phone_list_show_path(@policy.id), :class => "btn" %></p>
 <br>
 <div class="well">
   <h4>Add Call Settings To New Policy</h4>
@@ -14,27 +14,30 @@
   <div class="well">
     <h4>Authorised for Inbound calls</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddcallinbound_path do |f| %>
+    <%=form_for @policy, :url => policy_updateaddcallinbound_path(@policy.id) do |f| %>
       <%= f.select :phonelist_id, options_for_select(phonelist)%>
       <%= f.hidden_field :id, :value => @policy.id %>
       <br>
-      <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+      <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
     <%end%>
     <br>
-    <a class="accordion-toggle" data-toggle="collapse" data-target="#inboundCallphonelist">Phone list(s) used</a>
-    <div id="inboundCallphonelist" class="collapse out">
+    <h4>Phone list(s) used</h4>
       <table class="table table-bordered table-striped">
         <tbody>
-          <%unless @inboundCallsphonelist_ids == nil %>
+          <%unless @inboundCallsphonelist_ids == [] %>
             <%@inboundCallsphonelist_ids.each do |id| %>
               <tr>
-                <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatecallinbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
+                <td><%=phonelist_id(id)%></td><td><%= link_to 'Remove List',policy_updatecallinbound_path([@policy.id, id, "next"]),:class=>"btn btn-small btn-danger" %></td>
               </tr>
             <%end%>
+          <%else%>
+            <tr>
+              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+            </tr>
           <%end%>
+
         </tbody>
       </table>
-    </div>
   </div>
 
 
@@ -42,27 +45,29 @@
   <div class="well">
     <h4>Authorised for Outbound calls</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddcalloutbound_path do |f| %>
+    <%=form_for @policy, :url => policy_updateaddcalloutbound_path(@policy.id) do |f| %>
     <%= f.select :phonelist_id, options_for_select(phonelist)%>
     <%= f.hidden_field :id, :value => @policy.id %>
     <br>
-    <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
     <%end%>
  <br>
- <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundCallphonelist">Phone list(s) used</a>
-<div id="outboundCallphonelist" class="collapse out">
+ <h4>Phone list(s) used</h4>
 <table class="table table-bordered table-striped">
   <tbody>
- <%unless @outboundCallsphonelist_ids == nil%>
+ <%unless @outboundCallsphonelist_ids == []%>
  <%@outboundCallsphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatecalloutbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Remove List',policy_updatecalloutbound_path([@policy.id, id, "next"]),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
+ <%else%>
+            <tr>
+              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+            </tr>
  <%end%>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 
@@ -74,55 +79,60 @@
   <div class="well">
     <h4>Authorised for Inbound SMS</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddsmsinbound_path do |f| %>
+    <%=form_for @policy, :url => policy_updateaddsmsinbound_path(@policy.id) do |f| %>
     <%= f.select :phonelist_id, options_for_select(phonelist)%>
     <%= f.hidden_field :id, :value => @policy.id %>
     <br>
-    <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
     <%end%>
  <br>
-  <a class="accordion-toggle" data-toggle="collapse" data-target="#INboundSMSphonelist">Phone list(s) used</a>
-<div id="INboundSMSphonelist" class="collapse out">
+ <h4>Phone list(s) used</h4>
 <table class="table table-bordered table-striped">
   <tbody>
- <%unless @inboundSMSphonelist_ids == nil %>
+ <%unless @inboundSMSphonelist_ids == []%>
  <%@inboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatesmsinbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Remove List',policy_updatesmsinbound_path([@policy.id, id, "next"]),:class=>"btn btn-small btn-danger" %></td>
 </tr>
  <%end%>
+ <%else%>
+            <tr>
+              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+            </tr>
  <%end%>
 </tbody>
 </table>
-</div>
 </div>
 
 <div class="well">
     <h4>Authorised for Outbound SMS</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddsmsoutbound_path do |f| %>
+    <%=form_for @policy, :url => policy_updateaddsmsoutbound_path(@policy.id) do |f| %>
     <%= f.select :phonelist_id, options_for_select(phonelist)%>
     <%= f.hidden_field :id, :value => @policy.id %>
     <br>
-    <%= f.submit "Update", :class => "btn btn-small btn-warning"%> 
+    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
     <%end%>
  <br>
-   <a class="accordion-toggle" data-toggle="collapse" data-target="#outboundSMSphonelist">Phone list(s) used</a>
-<div id="outboundSMSphonelist" class="collapse out">
+<h4>Phone list(s) used</h4>
 <table class="table table-bordered table-striped">
   <tbody>
- <%unless @outboundSMSphonelist_ids == nil%>
+ <%unless @outboundSMSphonelist_ids == []%>
  <%@outboundSMSphonelist_ids.each do |id| %>
  <tr>
- <td><%=phonelist_id(id)%></td><td><%= link_to 'Edit List',phone_list_edit_path(id),:class=>"btn btn-small btn-warning" %> <%= link_to 'Remove List',policy_updatesmsoutbound_path([@policy.id, id]),:class=>"btn btn-small btn-danger" %></td>
+ <td><%=phonelist_id(id)%></td><td><%= link_to 'Remove List',policy_updatesmsoutbound_path([@policy.id, id, "next"]),:class=>"btn btn-small btn-danger" %></td>
  <%end%>
+ <%else%>
+            <tr>
+              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+            </tr>
  <%end%>
 </tbody>
 </table>
 </div>
-</div>
 
-<p align="right"><%= link_to "Finish", root_path, :class => "btn" %></p>
+
+<p align="right"><%= link_to "Finish", root_path, :class => "btn btn-primary" %></p>
 </div>
 
 

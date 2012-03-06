@@ -12,6 +12,7 @@
   <%= f.label "List Name" %>
   <%= f.text_field :name %>
   <%= f.hidden_field :account_id, :value => current_account.id %>
+  <%= f.hidden_field :policy_id, :value => @policy%>
   <br>
      <div class="well">
      <%= f.label "Contact Details" %>
@@ -23,7 +24,11 @@
     <p><%= f.link_to_add "Add a New Contact", :lists, :class => "btn btn-primary" %></p>
    </div>
 <br>
+<%unless @policy != nil %> 
   <%= f.submit "create" %>
+<%else%>
+  <%= f.submit "Create and Return to New Policy" %>
+<%end%>
 <% end %>
 </div>
 </div>

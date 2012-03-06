@@ -4,24 +4,19 @@ before_filter :authenticate_account!
 
   def show
     @phonelist = Phonelist.new
+    @policy = params[:format]
   end
 
   def create
-  	 @phonelist = Phonelist.new(params[:phonelist]) ||  @phonelist = Phonelist.new(:name => params[:name], :account_id => params[:account_id])
+  	 @phonelist = Phonelist.new(params[:phonelist])
    
     if @phonelist.valid?
-
-    if params[:phonelist] == nil
-      Phonelist.create(:name => params[:name], :account_id => params[:account_id])     
-      respond_to do |format|
-        format.html {  redirect_to root_path }
-        format.js
-  end
-    else
-      Phonelist.create(params[:phonelist])
-      redirect_to root_path
-
-    end
+      @phonelist.save
+      unless @phonelist.policy_id != nil
+        redirect_to root_path
+      else
+        redirect_to policy_next_path(@phonelist.policy_id)
+      end
 
 
     else
