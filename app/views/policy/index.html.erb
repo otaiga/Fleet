@@ -1,7 +1,7 @@
 <br>
 
 <div class="row">
-<div class="span6 offset3">
+<div class="span8 offset2">
 <div class="well">
 
 <%=render "shared/flash_notice"%>
@@ -38,25 +38,26 @@
    </div>
 
 
- <div class="well">
- <h4>Call Settings</h4>
-   <div class="well">
-     <%= f.label "Authorised Numbers Inbound" %>
-     <%= f.fields_for :calls_inbound_msisdns do |calls_inbound_msisdns| %>
-     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
-     <%end%>
-    <p><%= f.link_to_add "Add a Number List", :calls_inbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
-   </div>
-
-
-
+  <div class="well">
+  <h4>Call Settings</h4>
+  <div class="well", id='call_inbound'>
+      <%= f.label "Authorised Numbers Inbound" %>
+      <%unless phonelist == nil %>
+        <%= f.fields_for :calls_inbound_msisdns do |calls_inbound_msisdns| %>
+        <p><%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%> <%= calls_inbound_msisdns.link_to_remove "x",:class => "btn btn-danger" %></p>
+        <%end%>
+      <%else%>
+         <p>No phonelist created</p>
+      <%end%>
+      <p><%= f.link_to_add "Add Existing Number List", :calls_inbound_msisdns, :class => "btn btn-primary" %> <a data-toggle="modal" class="btn" href="#myModal">Create a Number List</a></p>
+  </div>
 
   <div class="well">
     <%= f.label "Authorised Numbers Outbound" %>
      <%= f.fields_for :calls_outbound_msisdns do |calls_inbound_msisdns| %>
-     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%>
+     <%= calls_inbound_msisdns.select :phonelist_id, options_for_select(phonelist)%> <%= calls_inbound_msisdns.link_to_remove "Remove",:class => "btn btn-danger" %>
      <%end%>
-    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn btn-primary" %> <%= link_to "Create a Number List", phone_list_show_path, :class => "btn" %></p>
+    <p><%= f.link_to_add "Add a Number List", :calls_outbound_msisdns, :class => "btn btn-primary" %>
   </div>
 
 <!--   <%= f.label "Call Time Window" %>
@@ -90,8 +91,51 @@
 <br>
   <%= f.hidden_field :account_id, :value => current_account.id %>
    <%= f.hidden_field :id, :value => @policy.id %>
-  <%= f.submit "create", :class => "btn btn-primary"%> 
+  <%= f.submit "Next", :class => "btn btn-primary"%> 
   <p align="right"><%= link_to "Cancel", root_path, :class => "btn" %></p>
+
 <% end %>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="myModal" class="modal hide">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>Create a New Number List</h3>
+        </div>
+        <div class="modal-body">
+          <br>
+          <%= form_tag ("/phone_list/create", :method => "POST", :remote => true, :id => "new_review" ) do %>
+            List Name
+            <br>
+            <%= text_field_tag :name %><br><br>
+            <%= hidden_field_tag :account_id, current_account.id %>
+            <br>
+            <div class="well">
+            <%= field_set_tag 'Contact Details' do %>
+            <%= fields_for :lists do |list_form| %>
+            Name: <%= list_form.text_field :member %>
+            Number: <%= list_form.text_field :msisdn, :class => "input-small" %>
+            <% end %>
+            <% end %>
+   </div>    
+      </div>
+        <div class="modal-footer">
+          <%= submit_tag("create", :class => "btn") %>  
+          <a href="#" class="btn" data-dismiss="modal">Close</a>
+          <% end %>
+        </div>
+      </div>

@@ -5,6 +5,7 @@ jQuery ->
   $(".collapse").collapse()
   $(".dropdown-toggle").dropdown()
   $(".modal").modal()
+  $(".modal").modal('hide')
   $("a[rel=popover]").popover()
   $(".navbar").scrollspy()
   $(".tab").tab "show"

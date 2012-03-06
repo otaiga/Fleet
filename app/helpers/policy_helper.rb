@@ -1,8 +1,14 @@
 module PolicyHelper
+	
   def phonelist
     @user = Account.find(current_account.id)
     @phonelist = @user.phonelists.all
-    @phonelist.map { |list| [ list.name, list.id] }
+    if @phonelist != nil
+  	  @phonelist.map { |list| [ list.name, list.id] }
+  	else
+  	  return nil
+  	end
+
   end
 
 

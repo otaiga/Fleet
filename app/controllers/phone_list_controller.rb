@@ -7,12 +7,22 @@ before_filter :authenticate_account!
   end
 
   def create
-  	 @phonelist = Phonelist.new(params[:phonelist])
+  	 @phonelist = Phonelist.new(params[:phonelist]) ||  @phonelist = Phonelist.new(:name => params[:name], :account_id => params[:account_id])
    
     if @phonelist.valid?
 
-    Phonelist.create(params[:phonelist])
-    redirect_to root_path
+    if params[:phonelist] == nil
+      Phonelist.create(:name => params[:name], :account_id => params[:account_id])     
+      respond_to do |format|
+        format.html {  redirect_to root_path }
+        format.js
+  end
+    else
+      Phonelist.create(params[:phonelist])
+      redirect_to root_path
+
+    end
+
 
     else
       flash.alert = "Please fill in all fields."

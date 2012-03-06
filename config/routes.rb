@@ -1,6 +1,7 @@
 Fleet::Application.routes.draw do
 
   get "api/index"
+  post "api/index"
 
   get "page/about"
   get "page/support"

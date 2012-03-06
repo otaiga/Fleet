@@ -4,6 +4,7 @@ before_filter :authenticate_account!
 
   def index
     @policy = Policy.new
+    @phonelist = Phonelist.new
   end
 
   def create
