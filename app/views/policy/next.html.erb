@@ -1,16 +1,18 @@
 <br>
 
 <div class="row">
-<div class="span8 offset2">
+<div class="span12">
 <div class="well">
 
 <%=render "shared/flash_notice"%>
 
-<h3>New Policy</h3><p align="right"><%= link_to "Create a New Number List", phone_list_show_path(@policy.id), :class => "btn" %></p>
+<h3>New Policy: <%=@policy.name%></h3><p align="right"><%= link_to "Create a New Number List", phone_list_show_path(@policy.id), :class => "btn" %></p>
 <br>
 <div class="well">
   <h4>Add Call Settings To New Policy</h4>
   <br>
+  <div class="row">
+  <div class="span4 offset1">
   <div class="well">
     <h4>Authorised for Inbound calls</h4> 
     <br>
@@ -32,16 +34,17 @@
             <%end%>
           <%else%>
             <tr>
-              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+              <td><span class="label">No list currently assigned to Inbound calls</span></td>
             </tr>
           <%end%>
 
         </tbody>
       </table>
   </div>
+</div>
 
 
-
+ <div class="span4 offset1">
   <div class="well">
     <h4>Authorised for Outbound calls</h4> 
     <br>
@@ -63,11 +66,13 @@
  <%end%>
  <%else%>
             <tr>
-              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+              <td><span class="label">No list currently assigned to Outbound calls</span></td>
             </tr>
  <%end%>
 </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 
@@ -76,6 +81,8 @@
 <div class="well">
   <h4>Add Messaging Settings To New Policy</h4>
   <br>
+  <div class="row">
+  <div class="span4 offset1">
   <div class="well">
     <h4>Authorised for Inbound SMS</h4> 
     <br>
@@ -97,13 +104,16 @@
  <%end%>
  <%else%>
             <tr>
-              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+              <td><span class="label">No list currently assigned to Inbound SMS</span></td>
             </tr>
  <%end%>
 </tbody>
 </table>
 </div>
+</div>
 
+
+<div class="span4 offset1">
 <div class="well">
     <h4>Authorised for Outbound SMS</h4> 
     <br>
@@ -124,17 +134,19 @@
  <%end%>
  <%else%>
             <tr>
-              <td>NO LISTS CURRENTLY ASSIGNED TO POLICY</td>
+              <td><span class="label">No list currently assigned to Outbound SMS</span></td>
             </tr>
  <%end%>
 </tbody>
 </table>
 </div>
-
+</div>
+</div>
+</div>
 
 <p align="right"><%= link_to "Finish", root_path, :class => "btn btn-primary" %></p>
 </div>
-
+</div>
 
 
 
