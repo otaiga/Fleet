@@ -16,7 +16,7 @@ class Policy < ActiveRecord::Base
     has_many :sms_outbound_msisdns, :dependent => :destroy
     accepts_nested_attributes_for :sms_outbound_msisdns,  :allow_destroy => true
 
-    has_many :phonelists, :dependent => :destroy
+    has_many :phonelists
     accepts_nested_attributes_for :phonelists, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
 end

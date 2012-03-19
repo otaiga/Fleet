@@ -26,7 +26,6 @@
          <ul class="nav nav-list">
            <li class="nav-header">Available Groups</li>
            <%=render "shared/group_list"%>
-           <%=render "shared/flash_notice"%>
           </ul>
           <a><%= link_to "Create a Group", main_new_group_create_path, :class=>"btn btn-primary" %></a>
           <a><%= link_to "Create a Device", main_new_device_create_path, :class=>"btn btn-primary" %></a>
@@ -37,7 +36,6 @@
          <ul class="nav nav-list">
            <li class="nav-header">Available Lists</li>
            <%=render "shared/phonelist"%>
-           <%=render "shared/flash_notice"%>
           </ul>
           <a><%= link_to "Create a Phone Number List", phone_list_show_path, :class=>"btn btn-primary" %></a>
         </div> 

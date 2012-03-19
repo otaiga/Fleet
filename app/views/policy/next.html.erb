@@ -6,21 +6,23 @@
 
 <%=render "shared/flash_notice"%>
 
-<h3>New Policy: <%=@policy.name%></h3><p align="right"><%= link_to "Create a New Number List", phone_list_show_path(@policy.id), :class => "btn" %></p>
+<h3>New Policy: <%=@policy.name%></h3><p align="right"><%= link_to "Create a New Number List", phone_list_show_path(@policy.id), :class => "btn btn-info" %></p>
 <br>
-<div class="well">
+<div class="well" style="background-color:#C0C0C0;">
   <h4>Add Call Settings To New Policy</h4>
   <br>
   <div class="row">
   <div class="span4 offset1">
-  <div class="well">
+ <div class="well" style="background-color:grey;">
     <h4>Authorised for Inbound calls</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddcallinbound_path(@policy.id) do |f| %>
+    <%unless phonelist == [] %>
+      <%=form_for @policy, :url => policy_updateaddcallinbound_path(@policy.id) do |f| %>
       <%= f.select :phonelist_id, options_for_select(phonelist)%>
       <%= f.hidden_field :id, :value => @policy.id %>
       <br>
-      <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
+      <%= f.submit "Add to phone list", :class => "btn btn-small btn-warning"%> 
+      <%end%>
     <%end%>
     <br>
     <h4>Phone list(s) used</h4>
@@ -34,7 +36,7 @@
             <%end%>
           <%else%>
             <tr>
-              <td><span class="label">No list currently assigned to Inbound calls</span></td>
+              <td><span class="label label-important">No list currently assigned to Inbound calls</span></td>
             </tr>
           <%end%>
 
@@ -45,14 +47,16 @@
 
 
  <div class="span4 offset1">
-  <div class="well">
+ <div class="well" style="background-color:grey;">
     <h4>Authorised for Outbound calls</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddcalloutbound_path(@policy.id) do |f| %>
-    <%= f.select :phonelist_id, options_for_select(phonelist)%>
-    <%= f.hidden_field :id, :value => @policy.id %>
-    <br>
-    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
+    <%unless phonelist == [] %>
+      <%=form_for @policy, :url => policy_updateaddcalloutbound_path(@policy.id) do |f| %>
+      <%= f.select :phonelist_id, options_for_select(phonelist)%>
+      <%= f.hidden_field :id, :value => @policy.id %>
+      <br>
+      <%= f.submit "Add to phone list", :class => "btn btn-small btn-warning"%> 
+      <%end%>
     <%end%>
  <br>
  <h4>Phone list(s) used</h4>
@@ -66,7 +70,7 @@
  <%end%>
  <%else%>
             <tr>
-              <td><span class="label">No list currently assigned to Outbound calls</span></td>
+              <td><span class="label label-important">No list currently assigned to Outbound calls</span></td>
             </tr>
  <%end%>
 </tbody>
@@ -78,19 +82,21 @@
 
 
 
-<div class="well">
+<div class="well" style="background-color:#C0C0C0;">
   <h4>Add Messaging Settings To New Policy</h4>
   <br>
   <div class="row">
   <div class="span4 offset1">
-  <div class="well">
+  <div class="well" style="background-color:grey;">
     <h4>Authorised for Inbound SMS</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddsmsinbound_path(@policy.id) do |f| %>
-    <%= f.select :phonelist_id, options_for_select(phonelist)%>
-    <%= f.hidden_field :id, :value => @policy.id %>
-    <br>
-    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
+    <%unless phonelist == [] %>
+      <%=form_for @policy, :url => policy_updateaddsmsinbound_path(@policy.id) do |f| %>
+      <%= f.select :phonelist_id, options_for_select(phonelist)%>
+      <%= f.hidden_field :id, :value => @policy.id %>
+      <br>
+      <%= f.submit "Add to phone list", :class => "btn btn-small btn-warning"%> 
+      <%end%>
     <%end%>
  <br>
  <h4>Phone list(s) used</h4>
@@ -104,7 +110,7 @@
  <%end%>
  <%else%>
             <tr>
-              <td><span class="label">No list currently assigned to Inbound SMS</span></td>
+              <td><span class="label label-important">No list currently assigned to Inbound SMS</span></td>
             </tr>
  <%end%>
 </tbody>
@@ -114,14 +120,16 @@
 
 
 <div class="span4 offset1">
-<div class="well">
+ <div class="well" style="background-color:grey;">
     <h4>Authorised for Outbound SMS</h4> 
     <br>
-    <%=form_for @policy, :url => policy_updateaddsmsoutbound_path(@policy.id) do |f| %>
-    <%= f.select :phonelist_id, options_for_select(phonelist)%>
-    <%= f.hidden_field :id, :value => @policy.id %>
-    <br>
-    <%= f.submit "Add List", :class => "btn btn-small btn-warning"%> 
+    <%unless phonelist == [] %>
+      <%=form_for @policy, :url => policy_updateaddsmsoutbound_path(@policy.id) do |f| %>
+      <%= f.select :phonelist_id, options_for_select(phonelist)%>
+      <%= f.hidden_field :id, :value => @policy.id %>
+      <br>
+      <%= f.submit "Add to phone list", :class => "btn btn-small btn-warning"%> 
+      <%end%>
     <%end%>
  <br>
 <h4>Phone list(s) used</h4>
@@ -134,7 +142,7 @@
  <%end%>
  <%else%>
             <tr>
-              <td><span class="label">No list currently assigned to Outbound SMS</span></td>
+              <td><span class="label label-important">No list currently assigned to Outbound SMS</span></td>
             </tr>
  <%end%>
 </tbody>
